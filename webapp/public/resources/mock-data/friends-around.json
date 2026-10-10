@@ -1,0 +1,8 @@
+[
+  { "id": "user_6", "name": "Trang", "initials": "TR", "online": true },
+  { "id": "user_7", "name": "Duy", "initials": "DU", "online": true },
+  { "id": "user_8", "name": "Vy", "initials": "VY", "online": true },
+  { "id": "user_9", "name": "Phuc", "initials": "PH", "online": false },
+  { "id": "user_10", "name": "An", "initials": "AN", "online": false },
+  { "id": "user_11", "name": "Quan", "initials": "QU", "online": true }
+]

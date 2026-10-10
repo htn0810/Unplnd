@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5efe1" />
+    <meta name="description" content="UNPLND — No plans. Just vibes." />
+    <title>UNPLND</title>
+    <!-- Apply the saved theme before first paint (no flash). Key must match store/themeStore.ts -->
+    <script>
+      try {
+        var pref = localStorage.getItem('unplnd.theme') || 'light'
+        var dark = pref === 'system' ? matchMedia('(prefers-color-scheme: dark)').matches : pref === 'dark'
+        document.documentElement.classList.toggle('dark', dark)
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#171d2e' : '#f5efe1')
+      } catch (e) {}
+    </script>
+  </head>
+  <body class="paper-grain">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

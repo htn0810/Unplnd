@@ -1,0 +1,229 @@
+version: 1
+
+project: UNPLND
+
+wiki_root: wiki
+
+# Sources of truth the wiki must stay consistent with (read, never overwritten by wiki tasks)
+sources:
+  - CLAUDE.md
+  - docs/UNPLND_PROJECT_SPEC.md
+  - .claude/skills/front-end-design/front-end-design-rule.md
+
+ignore:
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/build/**"
+  - "**/.gradle/**"
+  - "**/coverage/**"
+  - "**/playwright-report/**"
+  - "**/test-results/**"
+  - .idea/**
+  - .vscode/**
+  - "**/package-lock.json"
+  - "**/gradle/wrapper/**"
+  - webapp/src/components/ui/**     # shadcn-generated primitives
+  - plans/**                          # planning docs, not system knowledge
+
+mappings:
+
+  # ── Frontend ────────────────────────────────────────────────────────────
+  - match: webapp/src/features/auth/**
+    update:
+      - features/auth.md
+      - modules/web.md
+
+  - match: webapp/src/features/plan/**
+    update:
+      - features/plan-creation.md
+      - features/plan-lifecycle.md
+      - modules/web.md
+
+  - match: webapp/src/features/itinerary/**
+    update:
+      - features/itinerary-generation.md
+
+  - match: webapp/src/features/place/**
+    update:
+      - features/place-discovery.md
+
+  - match: webapp/src/features/voting/**
+    update:
+      - features/voting.md
+
+  - match: webapp/src/features/notification/**
+    update:
+      - features/notifications.md
+
+  - match: webapp/src/features/profile/**
+    update:
+      - features/profile-and-friends.md
+
+  - match: webapp/src/services/websocketClient.ts
+    update:
+      - architecture/realtime.md
+      - architecture/frontend.md
+
+  - match:
+      - webapp/src/routes/**
+      - webapp/src/pages/**
+      - webapp/src/store/**
+      - webapp/src/services/**
+      - webapp/src/App.tsx
+    update:
+      - architecture/frontend.md
+      - modules/web.md
+
+  - match: mobile/**
+    update:
+      - modules/mobile.md
+      - architecture/overview.md
+
+  # ── Backend services ───────────────────────────────────────────────────
+  - match: services/api-gateway/**
+    update:
+      - modules/api-gateway.md
+      - architecture/backend.md
+
+  - match: services/user-service/**
+    update:
+      - modules/user-service.md
+
+  - match: services/user-service/src/main/resources/db/migration/**
+    update:
+      - architecture/data-storage.md
+      - modules/user-service.md
+
+  - match: services/plan-service/**
+    update:
+      - modules/plan-service.md
+
+  - match: services/plan-service/**/plan/PlanStateMachine.java
+    update:
+      - features/plan-lifecycle.md
+
+  - match: services/plan-service/**/voting/**
+    update:
+      - features/voting.md
+
+  - match: services/plan-service/**/invite/**
+    update:
+      - features/invite-and-join.md
+
+  - match: services/plan-service/**/itinerary/**
+    update:
+      - features/itinerary-generation.md
+
+  - match: services/plan-service/**/memory/**
+    update:
+      - features/memory.md
+
+  - match: services/place-service/**
+    update:
+      - modules/place-service.md
+      - features/place-discovery.md
+
+  - match: services/notification-service/**
+    update:
+      - modules/notification-service.md
+      - features/notifications.md
+
+  - match: services/notification-service/**/websocket/**
+    update:
+      - architecture/realtime.md
+
+  - match: services/notification-service/**/presence/**
+    update:
+      - features/realtime-presence.md
+
+  - match: "services/*/**/event/**"
+    update:
+      - architecture/kafka-events.md
+
+  - match: "services/*/**/shared/**"
+    update:
+      - architecture/backend.md
+
+  # ── Shared packages ────────────────────────────────────────────────────
+  - match: packages/event-contracts/**
+    update:
+      - architecture/kafka-events.md
+      - modules/event-contracts.md
+
+  - match: packages/api-contracts/**
+    update:
+      - modules/api-contracts.md
+
+  - match: packages/shared-types/**
+    update:
+      - modules/api-contracts.md
+
+  # ── Infrastructure ─────────────────────────────────────────────────────
+  - match:
+      - infrastructure/**
+      - .github/workflows/**
+      - "**/Dockerfile"
+    update:
+      - architecture/infrastructure.md
+
+# Keywords that hint which feature page a change belongs to
+feature_detection:
+
+  auth:
+    - register / login / logout
+    - JWT
+    - AuthController
+    - SecurityConfig
+
+  plan-creation:
+    - CreatePlanRequest
+    - constraints (budget, duration, radius, location, group size)
+    - create plan wizard
+    - VibePicker
+
+  plan-lifecycle:
+    - PlanStatus
+    - PlanStateMachine
+    - InvalidStateTransitionException
+    - confirm / cancel / start / complete plan
+    - PLAN_CONFIRMED / PLAN_CANCELLED / PLAN_STARTED / PLAN_COMPLETED
+
+  invite-and-join:
+    - invite link / invite code
+    - join / leave plan
+    - PLAN_MEMBER_JOINED / PLAN_MEMBER_LEFT
+
+  place-discovery:
+    - PlaceProvider
+    - RoutingProvider
+    - Overpass / OSM / OSRM
+    - nearby search, geospatial query, distance
+    - place cache
+
+  itinerary-generation:
+    - RecommendationEngine
+    - itinerary, activity
+    - regenerate / replace / lock activity
+    - random challenge
+
+  voting:
+    - vote, VoteOption
+    - PLAN_VOTE_CAST / PLAN_VOTE_UPDATED
+
+  realtime-presence:
+    - presence, ONLINE / OFFLINE
+    - member stack
+
+  notifications:
+    - NotificationService
+    - NOTIFICATION_CREATED
+    - notification preferences
+
+  memory:
+    - memory, rating, photo upload
+    - plan album
+
+  profile-and-friends:
+    - profile, preferences
+    - friendship, friend request
+    - FRIEND_REQUEST_SENT / FRIEND_REQUEST_ACCEPTED

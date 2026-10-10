@@ -1,0 +1,70 @@
+{
+  "id": "user_1",
+  "name": "Nhan",
+  "handle": "nhan.unplnd",
+  "initials": "NH",
+  "city": {
+    "en": "Ho Chi Minh City",
+    "vi": "TP. Hồ Chí Minh"
+  },
+  "bio": {
+    "en": "Will say yes to any plan involving noodles.",
+    "vi": "Kèo nào có bún là có mặt."
+  },
+  "stats": {
+    "plansMade": 24,
+    "placesVisited": 48,
+    "friends": 31
+  },
+  "chaosScore": 87,
+  "vibeMix": [
+    {
+      "vibe": "CHAOS",
+      "percent": 38
+    },
+    {
+      "vibe": "FOOD",
+      "percent": 29
+    },
+    {
+      "vibe": "NERDY",
+      "percent": 18
+    },
+    {
+      "vibe": "CHILL",
+      "percent": 15
+    }
+  ],
+  "badges": [
+    {
+      "id": "night_owl",
+      "emoji": "🦉",
+      "unlocked": true
+    },
+    {
+      "id": "chaos_agent",
+      "emoji": "🌀",
+      "unlocked": true
+    },
+    {
+      "id": "food_hunter",
+      "emoji": "🍜",
+      "unlocked": true
+    },
+    {
+      "id": "streak_5",
+      "emoji": "🔥",
+      "unlocked": true
+    },
+    {
+      "id": "explorer",
+      "emoji": "🧭",
+      "unlocked": false
+    },
+    {
+      "id": "early_bird",
+      "emoji": "🌅",
+      "unlocked": false
+    }
+  ]
+}

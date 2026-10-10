@@ -1,0 +1,77 @@
+[
+  {
+    "id": "n_1",
+    "type": "PLAN_VOTE_CAST",
+    "group": "TODAY",
+    "minutesAgo": 2,
+    "read": false,
+    "actor": {
+      "name": "Linh",
+      "initials": "LI"
+    },
+    "planId": "plan_123",
+    "planTitle": "Friday Night Chaos",
+    "target": "🍜 Bún thịt nướng"
+  },
+  {
+    "id": "n_2",
+    "type": "PLAN_MEMBER_JOINED",
+    "group": "TODAY",
+    "minutesAgo": 14,
+    "read": false,
+    "actor": {
+      "name": "Khoa",
+      "initials": "KH"
+    },
+    "planId": "plan_123",
+    "planTitle": "Friday Night Chaos"
+  },
+  {
+    "id": "n_3",
+    "type": "FRIEND_REQUEST_SENT",
+    "group": "TODAY",
+    "minutesAgo": 47,
+    "read": false,
+    "actor": {
+      "name": "Minh",
+      "initials": "MI"
+    }
+  },
+  {
+    "id": "n_4",
+    "type": "PLAN_CONFIRMED",
+    "group": "TODAY",
+    "minutesAgo": 180,
+    "read": true,
+    "actor": {
+      "name": "Trang",
+      "initials": "TR"
+    },
+    "planId": "plan_130",
+    "planTitle": "Sunday Slow Morning"
+  },
+  {
+    "id": "n_5",
+    "type": "PLAN_COMPLETED",
+    "group": "EARLIER",
+    "minutesAgo": 7200,
+    "read": true,
+    "actor": {
+      "name": "Bao",
+      "initials": "BA"
+    },
+    "planId": "plan_184",
+    "planTitle": "Accidental Food Tour"
+  },
+  {
+    "id": "n_6",
+    "type": "FRIEND_REQUEST_ACCEPTED",
+    "group": "EARLIER",
+    "minutesAgo": 10080,
+    "read": true,
+    "actor": {
+      "name": "Vy",
+      "initials": "VY"
+    }
+  }
+]

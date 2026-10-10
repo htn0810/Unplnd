@@ -1,0 +1,463 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/nunito";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource/patrick-hand";
+@import "@fontsource-variable/jetbrains-mono";
+
+/*
+ * UNPLND theme — values from .claude/skills/front-end-design/front-end-design-rule.md
+ * Ghibli-inspired painted storybook: "Day" (default, :root) and "Twilight" (.dark).
+ */
+
+@custom-variant dark (&:is(.dark *));
+
+/* Static brand tokens (same in light and dark) */
+@theme {
+    --animate-float: float 6s ease-in-out infinite;
+    --animate-drift: drift 60s linear infinite;
+    --animate-sway: sway 5s ease-in-out infinite;
+
+    @keyframes drift {
+        from { transform: translateX(-12%); }
+        to { transform: translateX(12%); }
+    }
+    @keyframes sway {
+        0%, 100% { transform: rotate(-2deg); }
+        50% { transform: rotate(2deg); }
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+    }
+}
+
+/* Theme-dependent tokens mapped to Tailwind utilities */
+@theme inline {
+    --font-sans: 'Nunito Variable', ui-rounded, system-ui, sans-serif;
+    --font-heading: 'Fraunces Variable', ui-serif, Georgia, serif;
+    --font-hand: 'Patrick Hand', 'Nunito Variable', cursive;
+    --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    /* Brand + vibe accents: bright on dark, deeper on light so text stays readable */
+    --color-brand-purple: var(--brand-purple);
+    --color-brand-purple-light: var(--brand-purple-light);
+    --color-brand-pink: var(--brand-pink);
+    --color-brand-mint: var(--brand-mint);
+    --color-brand-meadow: var(--brand-purple);
+    --color-brand-sky: var(--brand-mint);
+    --color-brand-sun: var(--brand-sun);
+    --color-brand-sunset: var(--brand-pink);
+    --color-ink: var(--foreground);
+    --color-vibe-chill: var(--vibe-chill);
+    --color-vibe-food: var(--vibe-food);
+    --color-vibe-party: var(--vibe-party);
+    --color-vibe-nerdy: var(--vibe-nerdy);
+    --color-vibe-outdoor: var(--vibe-outdoor);
+    --color-vibe-date: var(--vibe-date);
+    --color-vibe-chaos: var(--vibe-chaos);
+    --color-vibe-surprise: var(--vibe-surprise);
+
+    --color-surface: var(--surface);
+    --color-surface-elevated: var(--surface-elevated);
+    --color-surface-hover: var(--surface-hover);
+    --color-border-strong: var(--border-strong);
+    --color-success: var(--success);
+    --color-warning: var(--warning);
+    --color-info: var(--info);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Radius scale: 8 / 12 / 16 / 20 / 24 / full */
+    --radius-sm: 10px;
+    --radius-md: 12px;
+    --radius-lg: var(--radius); /* 14px — inputs, buttons */
+    --radius-xl: 18px;
+    --radius-2xl: 22px;
+    --radius-3xl: 26px;         /* cards */
+    --radius-4xl: 34px;         /* hero, modal */
+}
+
+/* Day theme (default) — washi paper, watercolor pigments */
+:root {
+    color-scheme: light;
+    --radius: 14px;
+
+    /* Brand pigments. Legacy names kept: purple → meadow, pink → sunset, mint → sky */
+    --brand-purple: #3f7d5c;
+    --brand-purple-light: #5a9a74;
+    --brand-pink: #d9673e;
+    --brand-mint: #3e86b4;
+    --brand-sun: #e0a43a;
+    --vibe-chill: #3e86b4;
+    --vibe-food: #d9673e;
+    --vibe-party: #c2415a;
+    --vibe-nerdy: #4c5fb8;
+    --vibe-outdoor: #4e8b3a;
+    --vibe-date: #b5577e;
+    --vibe-chaos: #7a54b0;
+    --vibe-surprise: #c99212;
+
+    --background: #f5efe1;
+    --foreground: #2d3a2e;
+    --card: #fffbf2;
+    --card-foreground: #2d3a2e;
+    --popover: #fffbf2;
+    --popover-foreground: #2d3a2e;
+    --primary: #3f7d5c;
+    --primary-foreground: #fffbf2;
+    --primary-shade: #2c5a41;
+    --secondary: #efe6d2;
+    --secondary-foreground: #2d3a2e;
+    --muted: #ece2cc;
+    --muted-foreground: #6e6a58;
+    --accent: #e9dec5;
+    --accent-foreground: #2d3a2e;
+    --destructive: #c2413a;
+    --border: #e2d6bc;
+    --input: #e2d6bc;
+    --ring: #3e86b4;
+
+    --surface: #fffbf2;
+    --surface-elevated: #efe6d2;
+    --surface-hover: #e9dec5;
+    --border-strong: #cdbe9c;
+    --success: #3f7d5c;
+    --warning: #c98a1b;
+    --info: #3e86b4;
+
+    --chart-1: #3f7d5c;
+    --chart-2: #d9673e;
+    --chart-3: #3e86b4;
+    --chart-4: #e0a43a;
+    --chart-5: #7a54b0;
+
+    --sidebar: #fffbf2;
+    --sidebar-foreground: #2d3a2e;
+    --sidebar-primary: #3f7d5c;
+    --sidebar-primary-foreground: #fffbf2;
+    --sidebar-accent: #efe6d2;
+    --sidebar-accent-foreground: #2d3a2e;
+    --sidebar-border: #e2d6bc;
+    --sidebar-ring: #3e86b4;
+
+    --hills-front: color-mix(in srgb, var(--brand-purple) 22%, var(--background));
+
+    /* Paper grain strength and soft warm shadow tint */
+    --grain-opacity: 0.08;
+    --shadow-tint: rgb(92 72 40 / 0.18);
+}
+
+/* Twilight theme (dark) — ultramarine night, lantern light */
+.dark {
+    color-scheme: dark;
+
+    --brand-purple: #7cc59a;
+    --brand-purple-light: #9ad3af;
+    --brand-pink: #f29b76;
+    --brand-mint: #8cc3e6;
+    --brand-sun: #f4c866;
+    --vibe-chill: #8cc3e6;
+    --vibe-food: #f29b76;
+    --vibe-party: #f2909f;
+    --vibe-nerdy: #a3b0f0;
+    --vibe-outdoor: #9ccb7e;
+    --vibe-date: #efa6c4;
+    --vibe-chaos: #c3a6ec;
+    --vibe-surprise: #f4c866;
+
+    --background: #171d2e;
+    --foreground: #f3ebd9;
+    --card: #1f2740;
+    --card-foreground: #f3ebd9;
+    --popover: #232c47;
+    --popover-foreground: #f3ebd9;
+    --primary: #f4c866;
+    --primary-foreground: #1b2236;
+    --primary-shade: #b8923c;
+    --secondary: #28324f;
+    --secondary-foreground: #f3ebd9;
+    --muted: #28324f;
+    --muted-foreground: #a9b1c8;
+    --accent: #2f3a5b;
+    --accent-foreground: #f3ebd9;
+    --destructive: #f08a80;
+    --border: #344064;
+    --input: #344064;
+    --ring: #8cc3e6;
+
+    --surface: #1f2740;
+    --surface-elevated: #28324f;
+    --surface-hover: #2f3a5b;
+    --border-strong: #46537a;
+    --success: #7cc59a;
+    --warning: #f4c866;
+    --info: #8cc3e6;
+
+    --chart-1: #7cc59a;
+    --chart-2: #f29b76;
+    --chart-3: #8cc3e6;
+    --chart-4: #f4c866;
+    --chart-5: #c3a6ec;
+
+    --sidebar: #1f2740;
+    --sidebar-foreground: #f3ebd9;
+    --sidebar-primary: #f4c866;
+    --sidebar-primary-foreground: #1b2236;
+    --sidebar-accent: #2f3a5b;
+    --sidebar-accent-foreground: #f3ebd9;
+    --sidebar-border: #344064;
+    --sidebar-ring: #8cc3e6;
+
+    --hills-front: color-mix(in srgb, var(--brand-purple) 16%, var(--background));
+    --grain-opacity: 0.06;
+    --shadow-tint: rgb(0 0 0 / 0.35);
+}
+
+/* Brand gradient — reserved for special moments (logo, hero, LET'S GO, generated plan) */
+@utility bg-brand-gradient {
+    background-image: linear-gradient(120deg, var(--brand-mint) 0%, var(--brand-purple) 48%, var(--brand-sun) 100%);
+}
+
+@utility scrollbar-none {
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Paper grain: fixed, very faint noise over the whole app (hand-crafted feel) */
+@utility paper-grain {
+    position: relative;
+    &::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        pointer-events: none;
+        opacity: var(--grain-opacity);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.28 0 0 0 0 0.18 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        mix-blend-mode: multiply;
+    }
+}
+
+/* Soft warm paper shadow for cards */
+@utility paper-shadow {
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.5) inset, 0 10px 30px -14px var(--shadow-tint), 0 2px 6px -2px var(--shadow-tint);
+}
+
+/* Squishy pressable primary: darker "paper edge" underneath that collapses on press */
+@utility pressable {
+    box-shadow: 0 4px 0 var(--primary-shade);
+    transition: transform 120ms ease, box-shadow 120ms ease, background-color 150ms ease;
+    &:active:not(:disabled) {
+        transform: translateY(3px);
+        box-shadow: 0 1px 0 var(--primary-shade);
+    }
+}
+
+/* Section kicker: a handwritten label with a little leaf, instead of all-caps grey */
+@utility kicker {
+    font-family: var(--font-hand);
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    &::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+        background: currentColor;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4C10 4 4 9 4 17c0 1 .2 2 .5 3 .6-4 3.5-8.5 9-11-4.5 3-7 7-7.7 11.6.8.3 1.7.4 2.7.4 8 0 11.5-7 11.5-17Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+}
+
+/* Hand-painted brush stroke under display headings */
+@utility brush-underline {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9c30-6 62-7 96-5s66 3 98-1' fill='none' stroke='%23e0a43a' stroke-width='6' stroke-linecap='round' opacity='.7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 100% 0.45em;
+    background-position: 0 92%;
+    padding-bottom: 0.1em;
+}
+
+@utility text-brand-gradient {
+    background-image: linear-gradient(120deg, var(--brand-mint) 0%, var(--brand-purple) 48%, var(--brand-sun) 100%);
+    background-clip: text;
+    color: transparent;
+}
+
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
+    html {
+        @apply font-sans antialiased;
+    }
+    body {
+        @apply bg-background text-foreground;
+        background-image:
+            radial-gradient(60rem 36rem at 105% -5%, color-mix(in srgb, var(--brand-mint) 16%, transparent), transparent 70%),
+            radial-gradient(50rem 32rem at -10% 40%, color-mix(in srgb, var(--brand-purple) 12%, transparent), transparent 70%),
+            radial-gradient(44rem 30rem at 90% 105%, color-mix(in srgb, var(--brand-sun) 14%, transparent), transparent 70%);
+        background-attachment: fixed;
+    }
+    h1, h2, h3 {
+        @apply font-heading;
+        font-optical-sizing: auto;
+        letter-spacing: -0.01em;
+    }
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
+}
+
+/* Leaflet map skin (components/map/VietnamMap) */
+.unplnd-map.leaflet-container {
+    background: var(--background);
+    font-family: var(--font-sans);
+}
+.unplnd-map .unplnd-base-tiles {
+    /* Day: warmed toward watercolor paper */
+    filter: sepia(0.3) saturate(1.1) brightness(1.01);
+}
+.dark .unplnd-map .unplnd-base-tiles {
+    /* Twilight: tinted ultramarine */
+    filter: sepia(0.5) hue-rotate(195deg) saturate(2) brightness(1.15);
+}
+.unplnd-map .leaflet-control-attribution {
+    background: color-mix(in srgb, var(--background) 75%, transparent);
+    color: var(--muted-foreground);
+    font-size: 10px;
+}
+.unplnd-map .leaflet-control-attribution a {
+    color: var(--muted-foreground);
+}
+.unplnd-pin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background: var(--card);
+    border: 2px solid var(--pin);
+    box-shadow: 0 0 18px -4px var(--pin);
+    transition: transform 0.2s ease;
+}
+.unplnd-pin span {
+    transform: rotate(45deg);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--foreground);
+    line-height: 1;
+}
+.unplnd-pin.is-active {
+    transform: rotate(-45deg) scale(1.25);
+    background: var(--pin);
+}
+.unplnd-pin.is-active span {
+    color: #ffffff;
+}
+.unplnd-poi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 2px solid var(--poi);
+    box-shadow: 0 2px 6px -2px rgb(45 58 46 / 0.35);
+    font-size: 13px;
+    line-height: 1;
+    transition: transform 0.15s ease;
+}
+.unplnd-poi.is-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--poi);
+    border: 2px solid var(--card);
+}
+.unplnd-poi:hover {
+    transform: scale(1.2);
+}
+.unplnd-popup .leaflet-popup-content-wrapper {
+    background: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 10px 28px -12px rgb(45 58 46 / 0.4);
+}
+.unplnd-popup .leaflet-popup-content {
+    margin: 14px 16px;
+    font-family: var(--font-sans);
+}
+.unplnd-popup .leaflet-popup-tip {
+    background: var(--popover);
+}
+.unplnd-popup a.leaflet-popup-close-button {
+    color: var(--muted-foreground);
+}
+.unplnd-tooltip {
+    background: var(--popover);
+    color: var(--popover-foreground);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-weight: 600;
+    box-shadow: none;
+}
+.unplnd-tooltip::before {
+    display: none;
+}
+
+/* Dev-only screenshot mode (see main.tsx `?noanim`) */
+.no-anim *,
+.no-anim *::before,
+.no-anim *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+}

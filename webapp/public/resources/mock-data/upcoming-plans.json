@@ -1,0 +1,202 @@
+[
+  {
+    "id": "plan_123",
+    "inviteCode": "7H2K9X",
+    "title": "Friday Night Chaos",
+    "vibe": "CHAOS",
+    "status": "VOTING",
+    "startTime": "19:00",
+    "durationMinutes": 240,
+    "budgetPerPerson": 500000,
+    "radiusMeters": 5000,
+    "pendingVotesForMe": 2,
+    "members": [
+      {
+        "id": "user_1",
+        "name": "Nhan",
+        "initials": "NH",
+        "role": "CREATOR",
+        "online": true
+      },
+      {
+        "id": "user_2",
+        "name": "Linh",
+        "initials": "LI",
+        "role": "MEMBER",
+        "online": true
+      },
+      {
+        "id": "user_3",
+        "name": "Bao",
+        "initials": "BA",
+        "role": "MEMBER",
+        "online": true
+      },
+      {
+        "id": "user_4",
+        "name": "Mai",
+        "initials": "MA",
+        "role": "MEMBER",
+        "online": false
+      },
+      {
+        "id": "user_5",
+        "name": "Khoa",
+        "initials": "KH",
+        "role": "MEMBER",
+        "online": false
+      }
+    ],
+    "itinerary": [
+      {
+        "type": "FOOD",
+        "emoji": "🍜",
+        "label": "Bún thịt nướng",
+        "startTime": "19:00"
+      },
+      {
+        "type": "ACTIVITY",
+        "emoji": "🎮",
+        "label": "Arcade",
+        "startTime": "20:15"
+      },
+      {
+        "type": "WALK",
+        "emoji": "🌃",
+        "label": "Riverside walk",
+        "startTime": "21:30"
+      },
+      {
+        "type": "CHALLENGE",
+        "emoji": "🎲",
+        "label": "Snack swap",
+        "startTime": "22:15"
+      }
+    ],
+    "startDate": "2026-10-09",
+    "endDate": "2026-10-09",
+    "destination": "ho-chi-minh"
+  },
+  {
+    "id": "plan_130",
+    "inviteCode": "Q4M8ZP",
+    "title": "Sunday Slow Morning",
+    "vibe": "CHILL",
+    "status": "CONFIRMED",
+    "startTime": "09:30",
+    "durationMinutes": 180,
+    "budgetPerPerson": 300000,
+    "radiusMeters": 3000,
+    "pendingVotesForMe": 0,
+    "members": [
+      {
+        "id": "user_1",
+        "name": "Nhan",
+        "initials": "NH",
+        "role": "MEMBER",
+        "online": true
+      },
+      {
+        "id": "user_6",
+        "name": "Trang",
+        "initials": "TR",
+        "role": "CREATOR",
+        "online": true
+      },
+      {
+        "id": "user_8",
+        "name": "Vy",
+        "initials": "VY",
+        "role": "MEMBER",
+        "online": false
+      }
+    ],
+    "itinerary": [
+      {
+        "type": "DRINK",
+        "emoji": "☕",
+        "label": "Sky Café",
+        "startTime": "09:30"
+      },
+      {
+        "type": "WALK",
+        "emoji": "🌳",
+        "label": "Tao Đàn Park",
+        "startTime": "10:45"
+      },
+      {
+        "type": "FOOD",
+        "emoji": "🥖",
+        "label": "Bánh mì run",
+        "startTime": "11:45"
+      }
+    ],
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-10",
+    "destination": "ho-chi-minh"
+  },
+  {
+    "id": "plan_140",
+    "inviteCode": "DL3TRP",
+    "title": "Đà Lạt Escape",
+    "vibe": "CHILL",
+    "status": "VOTING",
+    "startDate": "2026-10-17",
+    "endDate": "2026-10-19",
+    "destination": "lam-dong",
+    "startTime": "09:00",
+    "durationMinutes": 480,
+    "budgetPerPerson": 800000,
+    "radiusMeters": 20000,
+    "pendingVotesForMe": 1,
+    "members": [
+      {
+        "id": "user_1",
+        "name": "Nhan",
+        "initials": "NH",
+        "role": "CREATOR",
+        "online": true
+      },
+      {
+        "id": "user_2",
+        "name": "Linh",
+        "initials": "LI",
+        "role": "MEMBER",
+        "online": true
+      },
+      {
+        "id": "user_8",
+        "name": "Vy",
+        "initials": "VY",
+        "role": "MEMBER",
+        "online": false
+      }
+    ],
+    "itinerary": [
+      {
+        "type": "DRINK",
+        "emoji": "☕",
+        "label": "Pine-forest coffee",
+        "startTime": "09:00"
+      },
+      {
+        "type": "WALK",
+        "emoji": "🛶",
+        "label": "Xuân Hương lake pedal",
+        "startTime": "10:15"
+      },
+      {
+        "type": "FOOD",
+        "emoji": "🍲",
+        "label": "Artichoke hotpot",
+        "startTime": "12:00"
+      },
+      {
+        "type": "FOOD",
+        "emoji": "🍢",
+        "label": "Night market grill",
+        "startTime": "18:30"
+      }
+    ]
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "plan_184",
+    "number": 184,
+    "title": "Accidental Food Tour",
+    "vibe": "FOOD",
+    "date": "2026-10-03",
+    "memberCount": 4,
+    "rating": 4.8,
+    "memory": "Actually one of the best random nights.",
+    "stops": ["🍜", "🎮", "🌃"]
+  },
+  {
+    "id": "plan_179",
+    "number": 179,
+    "title": "Sunset, Then Somehow Karaoke",
+    "vibe": "CHILL",
+    "date": "2026-09-27",
+    "memberCount": 3,
+    "rating": 4.5,
+    "memory": "Nobody planned the karaoke. Everybody sang.",
+    "stops": ["☕", "🌅", "🎤"]
+  },
+  {
+    "id": "plan_171",
+    "number": 171,
+    "title": "Board Games & Bánh Mì",
+    "vibe": "NERDY",
+    "date": "2026-09-19",
+    "memberCount": 5,
+    "rating": 4.2,
+    "memory": "Bao still owes everyone a rematch.",
+    "stops": ["🥖", "🎲", "🧋"]
+  },
+  {
+    "id": "plan_166",
+    "number": 166,
+    "title": "The Rooftop Detour",
+    "vibe": "PARTY",
+    "date": "2026-09-12",
+    "memberCount": 6,
+    "rating": 4.9,
+    "memory": "We were going home at 10. We were not going home at 10.",
+    "stops": ["🍢", "🎶", "🌙"]
+  }
+]

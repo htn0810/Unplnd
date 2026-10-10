@@ -1,0 +1,23 @@
+{
+  "stickers": [
+    {
+      "id": "sticker_1",
+      "kind": "STOP",
+      "emoji": "🍜",
+      "time": "19:00",
+      "label": "Bún thịt nướng"
+    },
+    {
+      "id": "sticker_2",
+      "kind": "JOINED",
+      "emoji": "🙌",
+      "count": 3
+    },
+    {
+      "id": "sticker_3",
+      "kind": "CHALLENGE",
+      "emoji": "🎲",
+      "label": "Snack swap"
+    }
+  ]
+}

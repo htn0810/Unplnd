@@ -1,0 +1,696 @@
+[
+  {
+    "id": "plan_123",
+    "inviteCode": "7H2K9X",
+    "title": "Friday Night Chaos",
+    "vibe": "CHAOS",
+    "status": "VOTING",
+    "startTime": "19:00",
+    "durationMinutes": 240,
+    "budgetPerPerson": 500000,
+    "radiusMeters": 5000,
+    "creatorId": "user_1",
+    "members": [
+      {
+        "id": "user_1",
+        "name": "Nhan",
+        "initials": "NH",
+        "role": "CREATOR",
+        "online": true
+      },
+      {
+        "id": "user_2",
+        "name": "Linh",
+        "initials": "LI",
+        "role": "MEMBER",
+        "online": true
+      },
+      {
+        "id": "user_3",
+        "name": "Bao",
+        "initials": "BA",
+        "role": "MEMBER",
+        "online": true
+      },
+      {
+        "id": "user_4",
+        "name": "Mai",
+        "initials": "MA",
+        "role": "MEMBER",
+        "online": false
+      },
+      {
+        "id": "user_5",
+        "name": "Khoa",
+        "initials": "KH",
+        "role": "MEMBER",
+        "online": false
+      }
+    ],
+    "activities": [
+      {
+        "id": "act_1",
+        "type": "FOOD",
+        "emoji": "🍜",
+        "title": "Bún thịt nướng",
+        "placeName": "Bún Thịt Nướng Cô Ba",
+        "startTime": "19:00",
+        "durationMinutes": 60,
+        "estimatedCost": 60000,
+        "distanceMeters": 800,
+        "locked": false,
+        "dayIndex": 0,
+        "province": "ho-chi-minh",
+        "lat": 10.7769,
+        "lng": 106.6966
+      },
+      {
+        "id": "act_2",
+        "type": "ACTIVITY",
+        "emoji": "🕹️",
+        "title": "Arcade battle",
+        "placeName": "Pixel Arcade",
+        "startTime": "20:15",
+        "durationMinutes": 60,
+        "estimatedCost": 120000,
+        "distanceMeters": 1200,
+        "locked": false,
+        "dayIndex": 0,
+        "province": "ho-chi-minh",
+        "lat": 10.783,
+        "lng": 106.696
+      },
+      {
+        "id": "act_3",
+        "type": "WALK",
+        "emoji": "🌃",
+        "title": "Riverside walk",
+        "placeName": "Riverside Walk",
+        "startTime": "21:30",
+        "durationMinutes": 45,
+        "estimatedCost": 0,
+        "distanceMeters": 1600,
+        "locked": false,
+        "dayIndex": 0,
+        "province": "ho-chi-minh",
+        "lat": 10.772,
+        "lng": 106.707
+      },
+      {
+        "id": "act_4",
+        "type": "DESSERT",
+        "emoji": "🧋",
+        "title": "Late-night bubble tea",
+        "placeName": "Bubble Tea Corner",
+        "startTime": "22:15",
+        "durationMinutes": 30,
+        "estimatedCost": 45000,
+        "distanceMeters": 400,
+        "locked": false,
+        "dayIndex": 0,
+        "province": "ho-chi-minh",
+        "lat": 10.779,
+        "lng": 106.699
+      }
+    ],
+    "alternatives": [
+      {
+        "type": "FOOD",
+        "emoji": "🍕",
+        "title": "Pizza by the slice",
+        "placeName": "Slice Society",
+        "estimatedCost": 80000,
+        "distanceMeters": 900
+      },
+      {
+        "type": "FOOD",
+        "emoji": "🍢",
+        "title": "Night market skewers",
+        "placeName": "Night Market Q4",
+        "estimatedCost": 50000,
+        "distanceMeters": 3100
+      },
+      {
+        "type": "ACTIVITY",
+        "emoji": "🎳",
+        "title": "Bowling showdown",
+        "placeName": "Strike Lane",
+        "estimatedCost": 150000,
+        "distanceMeters": 2200
+      },
+      {
+        "type": "ACTIVITY",
+        "emoji": "🔐",
+        "title": "Escape room",
+        "placeName": "Escape Room Lab",
+        "estimatedCost": 180000,
+        "distanceMeters": 3800
+      },
+      {
+        "type": "DRINK",
+        "emoji": "☕",
+        "title": "Rooftop coffee",
+        "placeName": "Sky Café",
+        "estimatedCost": 70000,
+        "distanceMeters": 1500
+      },
+      {
+        "type": "ACTIVITY",
+        "emoji": "🎤",
+        "title": "Karaoke hour",
+        "placeName": "Sing Sing Box",
+        "estimatedCost": 100000,
+        "distanceMeters": 1900
+      },
+      {
+        "type": "WALK",
+        "emoji": "🌉",
+        "title": "Bridge photo walk",
+        "placeName": "Ba Son Bridge",
+        "estimatedCost": 0,
+        "distanceMeters": 2600
+      }
+    ],
+    "challenge": {
+      "emoji": "🍫",
+      "text": {
+        "en": "Everyone picks a snack for someone else.",
+        "vi": "Mỗi người chọn đồ ăn vặt cho người khác."
+      }
+    },
+    "polls": [
+      {
+        "id": "poll_1",
+        "question": {
+          "en": "First stop: what are we eating?",
+          "vi": "Điểm đầu: ăn gì đây?"
+        },
+        "myVoteOptionId": null,
+        "options": [
+          {
+            "id": "opt_1",
+            "emoji": "🍜",
+            "label": "Bún thịt nướng",
+            "votes": 3
+          },
+          {
+            "id": "opt_2",
+            "emoji": "🍕",
+            "label": "Pizza",
+            "votes": 1
+          },
+          {
+            "id": "opt_3",
+            "emoji": "🍢",
+            "label": "Night market",
+            "votes": 0
+          }
+        ]
+      },
+      {
+        "id": "poll_2",
+        "question": {
+          "en": "How do we end the night?",
+          "vi": "Kết thúc đêm bằng gì?"
+        },
+        "myVoteOptionId": null,
+        "options": [
+          {
+            "id": "opt_4",
+            "emoji": "🧋",
+            "label": "Bubble tea",
+            "votes": 2
+          },
+          {
+            "id": "opt_5",
+            "emoji": "🎤",
+            "label": "Karaoke",
+            "votes": 2
+          },
+          {
+            "id": "opt_6",
+            "emoji": "🛵",
+            "label": "Straight home",
+            "votes": 0
+          }
+        ]
+      }
+    ],
+    "startDate": "2026-10-09",
+    "endDate": "2026-10-09",
+    "destination": "ho-chi-minh",
+    "days": [
+      {
+        "date": "2026-10-09",
+        "startTime": "19:00",
+        "province": "ho-chi-minh"
+      }
+    ]
+  },
+  {
+    "alternatives": [
+      {
+        "type": "FOOD",
+        "emoji": "🍕",
+        "title": "Pizza by the slice",
+        "placeName": "Slice Society",
+        "estimatedCost": 80000,
+        "distanceMeters": 900
+      },
+      {
+        "type": "FOOD",
+        "emoji": "🍢",
+        "title": "Night market skewers",
+        "placeName": "Night Market Q4",
+        "estimatedCost": 50000,
+        "distanceMeters": 3100
+      },
+      {
+        "type": "ACTIVITY",
+        "emoji": "🎳",
+        "title": "Bowling showdown",
+        "placeName": "Strike Lane",
+        "estimatedCost": 150000,
+        "distanceMeters": 2200
+      },
+      {
+        "type": "ACTIVITY",
+        "emoji": "🔐",
+        "title": "Escape room",
+        "placeName": "Escape Room Lab",
+        "estimatedCost": 180000,
+        "distanceMeters": 3800
+      },
+      {
+        "type": "DRINK",
+        "emoji": "☕",
+        "title": "Rooftop coffee",
+        "placeName": "Sky Café",
+        "estimatedCost": 70000,
+        "distanceMeters": 1500
+      },
+      {
+        "type": "ACTIVITY",
+        "emoji": "🎤",
+        "title": "Karaoke hour",
+        "placeName": "Sing Sing Box",
+        "estimatedCost": 100000,
+        "distanceMeters": 1900
+      },
+      {
+        "type": "WALK",
+        "emoji": "🌉",
+        "title": "Bridge photo walk",
+        "placeName": "Ba Son Bridge",
+        "estimatedCost": 0,
+        "distanceMeters": 2600
+      }
+    ],
+    "radiusMeters": 3000,
+    "id": "plan_130",
+    "inviteCode": "Q4M8ZP",
+    "title": "Sunday Slow Morning",
+    "vibe": "CHILL",
+    "status": "CONFIRMED",
+    "startTime": "09:30",
+    "durationMinutes": 180,
+    "budgetPerPerson": 300000,
+    "creatorId": "user_6",
+    "members": [
+      {
+        "id": "user_1",
+        "name": "Nhan",
+        "initials": "NH",
+        "role": "MEMBER",
+        "online": true
+      },
+      {
+        "id": "user_6",
+        "name": "Trang",
+        "initials": "TR",
+        "role": "CREATOR",
+        "online": true
+      },
+      {
+        "id": "user_8",
+        "name": "Vy",
+        "initials": "VY",
+        "role": "MEMBER",
+        "online": false
+      }
+    ],
+    "activities": [
+      {
+        "id": "act_11",
+        "type": "DRINK",
+        "emoji": "☕",
+        "title": "Rooftop coffee",
+        "placeName": "Sky Café",
+        "startTime": "09:30",
+        "durationMinutes": 60,
+        "estimatedCost": 70000,
+        "distanceMeters": 1500,
+        "locked": true,
+        "dayIndex": 0,
+        "province": "ho-chi-minh",
+        "lat": 10.774,
+        "lng": 106.704
+      },
+      {
+        "id": "act_12",
+        "type": "WALK",
+        "emoji": "🌳",
+        "title": "Park wander",
+        "placeName": "Tao Đàn Park",
+        "startTime": "10:45",
+        "durationMinutes": 45,
+        "estimatedCost": 0,
+        "distanceMeters": 2100,
+        "locked": false,
+        "dayIndex": 0,
+        "province": "ho-chi-minh",
+        "lat": 10.774,
+        "lng": 106.692
+      },
+      {
+        "id": "act_13",
+        "type": "FOOD",
+        "emoji": "🥖",
+        "title": "Bánh mì run",
+        "placeName": "Bánh Mì Huỳnh Hoa",
+        "startTime": "11:45",
+        "durationMinutes": 30,
+        "estimatedCost": 65000,
+        "distanceMeters": 900,
+        "locked": false,
+        "dayIndex": 0,
+        "province": "ho-chi-minh",
+        "lat": 10.7716,
+        "lng": 106.694
+      }
+    ],
+    "challenge": {
+      "emoji": "📸",
+      "text": {
+        "en": "One photo per stop. No retakes.",
+        "vi": "Mỗi điểm dừng chỉ một tấm ảnh. Không chụp lại."
+      }
+    },
+    "polls": [],
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-10",
+    "destination": "ho-chi-minh",
+    "days": [
+      {
+        "date": "2026-10-10",
+        "startTime": "09:30",
+        "province": "ho-chi-minh"
+      }
+    ]
+  },
+  {
+    "id": "plan_140",
+    "inviteCode": "DL3TRP",
+    "title": "Đà Lạt Escape",
+    "vibe": "CHILL",
+    "status": "VOTING",
+    "startDate": "2026-10-17",
+    "endDate": "2026-10-19",
+    "destination": "lam-dong",
+    "startTime": "09:00",
+    "durationMinutes": 480,
+    "budgetPerPerson": 800000,
+    "radiusMeters": 20000,
+    "creatorId": "user_1",
+    "members": [
+      {
+        "id": "user_1",
+        "name": "Nhan",
+        "initials": "NH",
+        "role": "CREATOR",
+        "online": true
+      },
+      {
+        "id": "user_2",
+        "name": "Linh",
+        "initials": "LI",
+        "role": "MEMBER",
+        "online": true
+      },
+      {
+        "id": "user_8",
+        "name": "Vy",
+        "initials": "VY",
+        "role": "MEMBER",
+        "online": false
+      }
+    ],
+    "days": [
+      {
+        "date": "2026-10-17",
+        "startTime": "09:00",
+        "province": "lam-dong"
+      },
+      {
+        "date": "2026-10-18",
+        "startTime": "05:00",
+        "province": "lam-dong"
+      },
+      {
+        "date": "2026-10-19",
+        "startTime": "08:30",
+        "province": "lam-dong"
+      }
+    ],
+    "activities": [
+      {
+        "id": "act_dl_1",
+        "dayIndex": 0,
+        "type": "DRINK",
+        "emoji": "☕",
+        "title": "Pine-forest coffee",
+        "placeName": "Mê Linh Coffee Garden",
+        "startTime": "09:00",
+        "durationMinutes": 60,
+        "estimatedCost": 60000,
+        "distanceMeters": 1500,
+        "locked": false,
+        "province": "lam-dong",
+        "lat": 11.903,
+        "lng": 108.36
+      },
+      {
+        "id": "act_dl_2",
+        "dayIndex": 0,
+        "type": "WALK",
+        "emoji": "🛶",
+        "title": "Xuân Hương lake pedal",
+        "placeName": "Hồ Xuân Hương",
+        "startTime": "10:15",
+        "durationMinutes": 45,
+        "estimatedCost": 60000,
+        "distanceMeters": 1500,
+        "locked": false,
+        "province": "lam-dong",
+        "lat": 11.942,
+        "lng": 108.442
+      },
+      {
+        "id": "act_dl_3",
+        "dayIndex": 0,
+        "type": "FOOD",
+        "emoji": "🍲",
+        "title": "Artichoke hotpot",
+        "placeName": "Lẩu Gà Lá É",
+        "startTime": "12:00",
+        "durationMinutes": 60,
+        "estimatedCost": 120000,
+        "distanceMeters": 1500,
+        "locked": false,
+        "province": "lam-dong",
+        "lat": 11.941,
+        "lng": 108.438,
+        "manualTime": true
+      },
+      {
+        "id": "act_dl_4",
+        "dayIndex": 0,
+        "type": "FOOD",
+        "emoji": "🍢",
+        "title": "Night market grill",
+        "placeName": "Chợ Đêm Đà Lạt",
+        "startTime": "18:30",
+        "durationMinutes": 60,
+        "estimatedCost": 80000,
+        "distanceMeters": 1500,
+        "locked": false,
+        "province": "lam-dong",
+        "lat": 11.9425,
+        "lng": 108.4375,
+        "manualTime": true
+      },
+      {
+        "id": "act_dl_5",
+        "dayIndex": 1,
+        "type": "ACTIVITY",
+        "emoji": "🌄",
+        "title": "Langbiang sunrise",
+        "placeName": "Núi Langbiang",
+        "startTime": "05:00",
+        "durationMinutes": 180,
+        "estimatedCost": 150000,
+        "distanceMeters": 1500,
+        "locked": false,
+        "province": "lam-dong",
+        "lat": 12.047,
+        "lng": 108.44
+      },
+      {
+        "id": "act_dl_6",
+        "dayIndex": 1,
+        "type": "ACTIVITY",
+        "emoji": "🛷",
+        "title": "Alpine coaster",
+        "placeName": "Datanla Waterfall",
+        "startTime": "08:15",
+        "durationMinutes": 90,
+        "estimatedCost": 200000,
+        "distanceMeters": 1500,
+        "locked": false,
+        "province": "lam-dong",
+        "lat": 11.9014,
+        "lng": 108.4497
+      },
+      {
+        "id": "act_dl_7",
+        "dayIndex": 1,
+        "type": "ACTIVITY",
+        "emoji": "🏚️",
+        "title": "Crazy House",
+        "placeName": "Hằng Nga Guesthouse",
+        "startTime": "14:00",
+        "durationMinutes": 60,
+        "estimatedCost": 80000,
+        "distanceMeters": 1500,
+        "locked": false,
+        "province": "lam-dong",
+        "lat": 11.935,
+        "lng": 108.43,
+        "manualTime": true
+      },
+      {
+        "id": "act_dl_8",
+        "dayIndex": 2,
+        "type": "WALK",
+        "emoji": "🌸",
+        "title": "Flower garden stroll",
+        "placeName": "Vườn Hoa Thành Phố",
+        "startTime": "08:30",
+        "durationMinutes": 60,
+        "estimatedCost": 50000,
+        "distanceMeters": 1500,
+        "locked": false,
+        "province": "lam-dong",
+        "lat": 11.948,
+        "lng": 108.45
+      },
+      {
+        "id": "act_dl_9",
+        "dayIndex": 2,
+        "type": "DRINK",
+        "emoji": "☕",
+        "title": "Pine-forest coffee",
+        "placeName": "Mê Linh Coffee Garden",
+        "startTime": "09:45",
+        "durationMinutes": 60,
+        "estimatedCost": 60000,
+        "distanceMeters": 1500,
+        "locked": false,
+        "province": "lam-dong",
+        "lat": 11.903,
+        "lng": 108.36
+      }
+    ],
+    "alternatives": [
+      {
+        "type": "DRINK",
+        "emoji": "☕",
+        "title": "Pine-forest coffee",
+        "placeName": "Mê Linh Coffee Garden",
+        "estimatedCost": 60000,
+        "distanceMeters": 1500
+      },
+      {
+        "type": "ACTIVITY",
+        "emoji": "🛷",
+        "title": "Alpine coaster",
+        "placeName": "Datanla Waterfall",
+        "estimatedCost": 200000,
+        "distanceMeters": 1500
+      },
+      {
+        "type": "FOOD",
+        "emoji": "🍲",
+        "title": "Artichoke hotpot",
+        "placeName": "Lẩu Gà Lá É",
+        "estimatedCost": 120000,
+        "distanceMeters": 1500
+      },
+      {
+        "type": "FOOD",
+        "emoji": "🍢",
+        "title": "Night market grill",
+        "placeName": "Chợ Đêm Đà Lạt",
+        "estimatedCost": 80000,
+        "distanceMeters": 1500
+      },
+      {
+        "type": "WALK",
+        "emoji": "🌸",
+        "title": "Flower garden stroll",
+        "placeName": "Vườn Hoa Thành Phố",
+        "estimatedCost": 50000,
+        "distanceMeters": 1500
+      },
+      {
+        "type": "ACTIVITY",
+        "emoji": "🏚️",
+        "title": "Crazy House",
+        "placeName": "Hằng Nga Guesthouse",
+        "estimatedCost": 80000,
+        "distanceMeters": 1500
+      }
+    ],
+    "challenge": {
+      "emoji": "🧥",
+      "text": {
+        "en": "Whoever forgets a jacket buys the first hot drink.",
+        "vi": "Ai quên áo khoác thì bao ly nước nóng đầu tiên."
+      }
+    },
+    "polls": [
+      {
+        "id": "poll_dl",
+        "question": {
+          "en": "Day 2 sunrise: worth the 4:30 alarm?",
+          "vi": "Ngày 2 ngắm bình minh: dậy 4:30 có đáng không?"
+        },
+        "myVoteOptionId": null,
+        "options": [
+          {
+            "id": "opt_dl1",
+            "emoji": "🌄",
+            "label": "Langbiang sunrise",
+            "votes": 2
+          },
+          {
+            "id": "opt_dl2",
+            "emoji": "😴",
+            "label": "Sleep in",
+            "votes": 1
+          }
+        ]
+      }
+    ]
+  }
+]

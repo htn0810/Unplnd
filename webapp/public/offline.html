@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5efe1" />
+    <title>UNPLND — Offline</title>
+    <!-- Served by sw.js when a page is requested without network. Self-contained: no fonts, scripts or images from the network. -->
+    <style>
+      :root { --bg: #f5efe1; --fg: #2d3a2e; --muted: #6e6a58; --primary: #3f7d5c; --on-primary: #fffbf2; --sky: #3e86b4; --meadow: #3f7d5c; --sunset: #d9673e; }
+      :root.dark { --bg: #171d2e; --fg: #f3ebd9; --muted: #a9b1c8; --primary: #f4c866; --on-primary: #1b2236; --sky: #8cc3e6; --meadow: #7cc59a; --sunset: #f29b76; }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100svh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--bg); color: var(--fg); font-family: ui-rounded, 'Nunito', system-ui, sans-serif; text-align: center; }
+      main { position: relative; z-index: 1; max-width: 28rem; padding: 0 16px 8rem; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+      h1 { margin: 0; font-family: 'Fraunces', Georgia, serif; font-size: 2rem; letter-spacing: -0.01em; }
+      p { margin: 0; color: var(--muted); line-height: 1.5; }
+      button { min-height: 48px; min-width: 160px; padding: 0 24px; border: 0; border-radius: 16px; background: var(--primary); color: var(--on-primary); font: inherit; font-weight: 800; letter-spacing: .04em; cursor: pointer; box-shadow: 0 4px 0 color-mix(in srgb, var(--primary) 60%, #000); transition: transform .1s, box-shadow .1s; }
+      button:active { transform: translateY(3px); box-shadow: 0 1px 0 color-mix(in srgb, var(--primary) 60%, #000); }
+      button:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+      .rain span { position: fixed; top: -10vh; width: 1px; border-radius: 1px; background: var(--sky); opacity: .4; animation: fall linear infinite; }
+      @keyframes fall { to { transform: translateY(120vh); } }
+      @keyframes float { 50% { transform: translateY(-6px) rotate(2deg); } }
+      .bong { animation: float 5s ease-in-out infinite; }
+      .hills { position: fixed; inset: auto 0 0 0; width: 100%; height: 9rem; }
+      @media (prefers-reduced-motion: reduce) { .rain, .bong { animation: none; } .rain { display: none; } }
+    </style>
+    <script>
+      try {
+        var pref = localStorage.getItem('unplnd.theme') || 'light'
+        var dark = pref === 'system' ? matchMedia('(prefers-color-scheme: dark)').matches : pref === 'dark'
+        document.documentElement.classList.toggle('dark', dark)
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#171d2e' : '#f5efe1')
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div class="rain" aria-hidden="true"></div>
+    <main>
+      <svg class="bong" viewBox="0 0 120 150" width="140" height="175" aria-hidden="true">
+        <path d="M6 52 C 14 18 44 4 62 6 C 84 8 110 24 114 52 C 100 44 88 46 78 52 C 68 44 54 44 44 52 C 34 44 18 44 6 52 Z" fill="#3f7d5c" />
+        <path d="M60 8 C 58 24 58 40 60 52" stroke="#2f5f45" stroke-width="2" fill="none" stroke-linecap="round" />
+        <path d="M60 52 L 60 72" stroke="#6b4f2c" stroke-width="3" stroke-linecap="round" />
+        <circle cx="60" cy="108" r="34" fill="#fffbf2" stroke="#cdbe9c" stroke-width="1.5" />
+        <path d="M47 110 q 4 3 8 0 M65 110 q 4 3 8 0" stroke="#2d3a2e" stroke-width="2.4" stroke-linecap="round" fill="none" />
+        <ellipse cx="44" cy="117" rx="5" ry="3" fill="#d9673e" opacity=".35" />
+        <ellipse cx="76" cy="117" rx="5" ry="3" fill="#d9673e" opacity=".35" />
+        <path d="M57 120 q 3 1 6 0" stroke="#2d3a2e" stroke-width="2" stroke-linecap="round" fill="none" />
+      </svg>
+      <h1 id="title">Lost the signal.</h1>
+      <p id="body">Looks like the wifi wandered off. Your plans are safe — we'll pick up right where you left off.</p>
+      <button id="retry" type="button">TRY AGAIN</button>
+    </main>
+    <svg class="hills" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 70 C 180 30 320 60 480 40 C 660 18 780 70 960 48 C 1140 26 1280 60 1440 38 L1440 140 L0 140 Z" fill="var(--sky)" opacity=".18" />
+      <path d="M0 96 C 200 60 360 92 560 72 C 760 52 900 96 1100 76 C 1260 60 1360 80 1440 70 L1440 140 L0 140 Z" fill="var(--meadow)" opacity=".28" />
+      <path d="M0 120 C 240 96 420 124 680 106 C 900 92 1100 124 1440 104 L1440 160 L0 160 Z" fill="color-mix(in srgb, var(--meadow) 22%, var(--bg))" />
+    </svg>
+    <script>
+      // Copy mirrors offline.* in src/i18n/locales — keep in sync
+      var copy = {
+        vi: { title: 'Mất sóng rồi.', body: 'Hình như wifi đi lạc đâu mất. Kèo của bạn vẫn an toàn — có mạng lại là tiếp tục ngay.', retry: 'THỬ LẠI' },
+      }
+      try {
+        var lang = (localStorage.getItem('unplnd.language') || navigator.language || 'en').slice(0, 2)
+        var text = copy[lang]
+        if (text) {
+          document.documentElement.lang = lang
+          document.getElementById('title').textContent = text.title
+          document.getElementById('body').textContent = text.body
+          document.getElementById('retry').textContent = text.retry
+        }
+      } catch (e) {}
+      var rain = document.querySelector('.rain')
+      for (var i = 0; i < 26; i++) {
+        var drop = document.createElement('span')
+        drop.style.left = ((i * 37) % 100) + '%'
+        drop.style.height = 14 + ((i * 5) % 4) * 6 + 'px'
+        drop.style.animationDuration = 1.1 + ((i * 7) % 6) / 10 + 's'
+        drop.style.animationDelay = ((i * 13) % 20) / 10 + 's'
+        rain.appendChild(drop)
+      }
+      document.getElementById('retry').addEventListener('click', function () { location.reload() })
+      window.addEventListener('online', function () { location.reload() })
+    </script>
+  </body>
+</html>

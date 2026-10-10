@@ -1,0 +1,497 @@
+{
+  "common": {
+    "appHomeLabel": "Trang chủ UNPLND",
+    "mainNavigation": "Điều hướng chính",
+    "justNow": "vừa xong",
+    "tryAgain": "THỬ LẠI",
+    "seeAll": "Xem tất cả",
+    "isOnline": "{{name}} đang online",
+    "notifications": "Thông báo",
+    "notificationsUnread": "Thông báo, {{count}} chưa đọc",
+    "changeLanguage": "Đổi ngôn ngữ. Hiện tại: {{language}}",
+    "theme": "Giao diện: {{current}}. Chuyển sang {{next}}",
+    "themes": {
+      "dark": "Hoàng hôn",
+      "light": "Ban ngày",
+      "system": "Theo hệ thống"
+    }
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "explore": "Khám phá",
+    "plans": "Kèo",
+    "profile": "Cá nhân",
+    "makePlan": "Lên kèo"
+  },
+  "home": {
+    "greeting": "Hey {{name}}, tối nay tính sao?",
+    "greetingAnonymous": "Tối nay tính sao?",
+    "heroLine1": "CHƯA CÓ",
+    "heroLine2": "KÈO NÀO.",
+    "heroLine3": "VẬY MỚI VUI.",
+    "tonightCouldBe": "Tối nay chơi kiểu",
+    "shuffleVibe": "Tối nay chơi kiểu {{vibe}}. Đổi vibe khác",
+    "makePlan": "LÊN KÈO",
+    "happeningNow": "Đang diễn ra",
+    "recentMemories": "Kỷ niệm gần đây",
+    "sticker": {
+      "STOP": "{{time}} · {{label}}",
+      "JOINED_other": "{{count}} người vừa vào kèo",
+      "CHALLENGE": "Thử thách: {{label}}"
+    },
+    "vibesTitle": "Tối nay vibe gì?",
+    "vibesSubtitle": "Chọn một. Phần còn lại để tụi mình lo.",
+    "pickVibe": "Lên kèo kiểu {{vibe}}",
+    "nearbyTitle": "Đáng để ra khỏi nhà",
+    "nearbySubtitle": "Gần đây. Đang mở cửa.",
+    "challengeTitle": "Thử thách ngẫu nhiên tối nay",
+    "challengeShuffle": "ĐỔI CÁI KHÁC",
+    "challengeUse": "THÊM VÀO KÈO",
+    "equation": {
+      "people": "BẠN BÈ",
+      "time": "THỜI GIAN",
+      "budget": "NGÂN SÁCH",
+      "vibe": "VIBE",
+      "letsGo": "ĐI THÔI",
+      "pitch": "UNPLND biến câu “Sao cũng được, tuỳ mày” thành một cái kèo đáng để ra khỏi nhà."
+    }
+  },
+  "join": {
+    "invitedBy": "<b>{{name}}</b> rủ bạn đi",
+    "going_other": "{{count}} người tham gia",
+    "route": "Lộ trình",
+    "join": "VÀO KÈO",
+    "joining": "Đang chèn bạn vào…",
+    "joined": "Bạn đã vào kèo! 🎉",
+    "notNow": "Để sau",
+    "invalidTitle": "Lời mời này hết hạn hoặc không tồn tại.",
+    "invalidBody": "Nhờ bạn gửi lại link mới nhé.",
+    "label": "Có mã mời không?",
+    "submit": "VÀO KÈO"
+  },
+  "friends": {
+    "quiet": "Hội bạn im ắng đáng ngờ tối nay.",
+    "freeOne": "đang rảnh tối nay",
+    "freeTwo": "đang rảnh tối nay",
+    "freeMore": "+{{count}} người đang rảnh tối nay"
+  },
+  "plan": {
+    "day": {
+      "TONIGHT": "Tối nay",
+      "TOMORROW": "Ngày mai",
+      "TODAY": "Hôm nay"
+    },
+    "perPerson": "/người",
+    "itinerary": "Lịch trình",
+    "hereNow": "{{count}} người đang online",
+    "votesPending_other": "{{count}} lượt vote",
+    "waitingOnYou": "đang chờ bạn",
+    "youVoted": "✓ Bạn đã vote",
+    "vote": "VOTE",
+    "rated": "Đánh giá {{rating}}/5",
+    "days_other": "{{count}} ngày"
+  },
+  "activity": {
+    "PLAN_VOTE_CAST": "đã vote cho {{target}}",
+    "PLAN_VOTE_UPDATED": "đổi vote sang {{target}}",
+    "PLAN_MEMBER_JOINED": "đã vào kèo",
+    "PLAN_MEMBER_LEFT": "đã rời kèo"
+  },
+  "memories": {
+    "errorTitle": "Có gì đó trật đường ray rồi.",
+    "errorBody": "Chưa tải được kỷ niệm của bạn lúc này.",
+    "emptyTitle": "Chưa có kèo nào. Hơi đáng ngờ đó.",
+    "emptyBody": "Kỷ niệm đầu tiên chỉ cách một cái kèo."
+  },
+  "vibes": {
+    "CHILL": "Cà phê, hoàng hôn, tám chuyện",
+    "FOOD": "Quán xá, ăn vặt, săn món ngon",
+    "PARTY": "Nhạc, đêm, quẩy",
+    "NERDY": "Game, sách, bảo tàng, công nghệ",
+    "OUTDOOR": "Công viên, đi bộ, thể thao",
+    "DATE": "Lãng mạn, ấm cúng, sống ảo",
+    "CHAOS": "Bất ngờ và hơi điên",
+    "SURPRISE": "Để UNPLND quyết hết"
+  },
+  "place": {
+    "openUntil": "Mở đến {{time}}",
+    "openAllDay": "Mở cả ngày",
+    "free": "Miễn phí",
+    "addToPlan": "Thêm {{name}} vào kèo",
+    "price": "Mức giá {{level}}/3"
+  },
+  "footer": {
+    "tagline": "Không cần kế hoạch. Chỉ cần vibe.",
+    "navLabel": "Chân trang",
+    "copyright": "© {{year}} {{owner}}. Bảo lưu mọi quyền.",
+    "madeWith": "Làm bằng 🍜 và vài quyết định hơi liều."
+  },
+  "auth": {
+    "signIn": {
+      "title": "Đăng nhập",
+      "subtitle": "Gặp lại bạn rồi.",
+      "submit": "ĐĂNG NHẬP",
+      "submitting": "Đang check vibe…",
+      "noAccount": "Chưa có tài khoản?",
+      "toSignUp": "Đăng ký",
+      "forgot": "Quên mật khẩu?"
+    },
+    "signUp": {
+      "title": "Tạo tài khoản",
+      "subtitle": "Mất 20 giây. Nhanh hơn chọn quán ăn.",
+      "submit": "TẠO TÀI KHOẢN",
+      "submitting": "Đang chuẩn bị…",
+      "hasAccount": "Đã có tài khoản?",
+      "toSignIn": "Đăng nhập",
+      "terms": "Khi đăng ký, bạn đồng ý với <terms>Điều khoản</terms> và <privacy>Chính sách quyền riêng tư</privacy>."
+    },
+    "social": {
+      "google": "Tiếp tục với Google",
+      "facebook": "Tiếp tục với Facebook",
+      "divider": "hoặc dùng tên đăng nhập"
+    },
+    "fields": {
+      "username": "Tên đăng nhập",
+      "usernamePlaceholder": "vd: nhan.unplnd",
+      "password": "Mật khẩu",
+      "passwordPlaceholder": "Ít nhất 8 ký tự",
+      "confirmPassword": "Nhập lại mật khẩu",
+      "showPassword": "Hiện mật khẩu",
+      "hidePassword": "Ẩn mật khẩu"
+    },
+    "errors": {
+      "usernameRequired": "Nhập tên đăng nhập",
+      "usernameFormat": "3–20 ký tự: chữ, số, . hoặc _",
+      "passwordRequired": "Nhập mật khẩu",
+      "passwordMin": "Dùng ít nhất 8 ký tự",
+      "passwordStrength": "Kết hợp chữ và số",
+      "passwordMismatch": "Mật khẩu không khớp",
+      "generic": "Có gì đó trật đường ray rồi. Thử lại nhé."
+    },
+    "panel": {
+      "signInTitle": "Chào mừng trở lại.",
+      "signInBody": "Group chat vẫn đang cãi nhau. Chốt kèo thôi.",
+      "signUpTitle": "Chưa có kèo? Chuẩn.",
+      "signUpBody": "Tham gia UNPLND, khỏi phải nói “sao cũng được” nữa."
+    }
+  },
+  "createPlan": {
+    "close": "Đóng",
+    "stepOf": "Bước {{current}}/{{total}}",
+    "back": "Quay lại",
+    "next": "TIẾP",
+    "submit": "LÊN KÈO NGAY",
+    "people": {
+      "title": "AI ĐI CÙNG?",
+      "subtitle": "Chọn hội của bạn. Đi một mình cũng được.",
+      "you": "Bạn",
+      "count_other": "Bạn + {{count}} người",
+      "solo": "Một mình. Chất."
+    },
+    "duration": {
+      "title": "ĐI BAO LÂU?",
+      "subtitle": "Ước chừng thôi. Không ai bấm giờ đâu.",
+      "d30": "Ăn nhẹ",
+      "d60": "Một cuộc vui",
+      "d120": "Đi chơi đàng hoàng",
+      "d180": "Đêm của nhân vật chính",
+      "d240": "Đừng đợi cửa",
+      "max": "4h+",
+      "titlePerDay": "MỖI NGÀY BAO LÂU?"
+    },
+    "budget": {
+      "title": "NGÂN SÁCH BAO NHIÊU?",
+      "subtitle": "Tính theo mỗi người. Tụi mình giữ đúng.",
+      "b100000": "Vua vỉa hè",
+      "b300000": "Hơi hỗn mà vẫn ổn",
+      "b500000": "Tự thưởng",
+      "b1000000": "Tiền chỉ là con số",
+      "max": "1M+",
+      "perPerson": "/ người",
+      "perPersonDay": "/ người / ngày"
+    },
+    "vibe": {
+      "title": "VIBE GÌ ĐÂY?",
+      "subtitle": "Cái này quyết định tất cả. Thật."
+    },
+    "location": {
+      "title": "Ở ĐÂU?",
+      "subtitle": "Tụi mình chỉ tìm trong vòng tròn này.",
+      "current": "Vị trí hiện tại",
+      "currentValue": "Quận 1, TP. Hồ Chí Minh",
+      "radius": "Bán kính",
+      "radiusValue": "{{km}} km",
+      "nearbyCount": "~{{count}} địa điểm trong vùng",
+      "mode": {
+        "nearby": "Gần tôi",
+        "province": "Tỉnh thành khác"
+      },
+      "searchProvince": "Tìm tỉnh, thành phố…",
+      "searchProvinceLabel": "Tìm tỉnh thành",
+      "noProvince": "Không có tỉnh nào khớp “{{query}}”."
+    },
+    "summary": {
+      "title": "Kèo của bạn",
+      "empty": "Chưa có gì. Vui là ở đó.",
+      "people": "Hội",
+      "duration": "Thời gian",
+      "budget": "Ngân sách",
+      "vibe": "Vibe",
+      "radius": "Bán kính",
+      "when": "Khi nào",
+      "where": "Ở đâu"
+    },
+    "generating": {
+      "lines": [
+        "Đang check vibe…",
+        "Đang tìm chỗ gần đây…",
+        "Đang đưa ra vài quyết định hơi liều…",
+        "Xong."
+      ],
+      "ready": "KÈO ĐÃ SẴN SÀNG."
+    },
+    "when": {
+      "title": "KHI NÀO?",
+      "subtitle": "Chọn một ngày — hoặc kéo dài thành cả chuyến đi.",
+      "calendarLabel": "Chọn ngày",
+      "prevMonth": "Tháng trước",
+      "nextMonth": "Tháng sau",
+      "startTime": "Giờ bắt đầu",
+      "custom": "Tuỳ chỉnh",
+      "maxDays": "Chuyến đi tối đa {{count}} ngày.",
+      "presets": {
+        "morning": "Sáng",
+        "lunch": "Trưa",
+        "afternoon": "Chiều",
+        "evening": "Tối",
+        "late": "Khuya"
+      }
+    }
+  },
+  "planDetail": {
+    "back": "Tất cả kèo",
+    "notFoundTitle": "Kèo này đi lạc rồi.",
+    "notFoundBody": "Có thể kèo đã bị huỷ, hoặc link sai.",
+    "backHome": "VỀ TRANG CHỦ",
+    "people_other": "{{count}} người",
+    "heroLine1": "ĐÊM NAY",
+    "heroLine2": "NHÌN CÓ VẺ",
+    "heroLine3": "RẤT UNPLND.",
+    "status": {
+      "DRAFT": "Nháp",
+      "GENERATING": "Đang tạo",
+      "OPEN": "Đang mở",
+      "VOTING": "Đang vote",
+      "CONFIRMED": "Đã chốt",
+      "READY_TO_GO": "Sẵn sàng",
+      "IN_PROGRESS": "Đang đi",
+      "COMPLETED": "Hoàn thành",
+      "CANCELLED": "Đã huỷ"
+    },
+    "progress": "Tiến độ kèo",
+    "itinerary": "Lịch trình",
+    "lock": "Khoá {{title}}",
+    "unlock": "Mở khoá {{title}}",
+    "locked": "Đã khoá",
+    "replace": "Đổi {{title}}",
+    "free": "Miễn phí",
+    "challenge": "Thử thách ngẫu nhiên",
+    "budget": {
+      "title": "Check ngân sách",
+      "of": "{{spent}} / {{budget}} mỗi người",
+      "under": "Dưới ngân sách. Ngon.",
+      "over": "Vượt {{amount}}. Chơi lớn."
+    },
+    "members": {
+      "title": "Ai tham gia",
+      "online": "{{count}} người đang online",
+      "invite": "MỜI",
+      "creator": "Chủ kèo"
+    },
+    "voting": {
+      "title": "Vote nhóm",
+      "votes_other": "{{count}} vote",
+      "yourVote": "Bạn chọn",
+      "voteFor": "Vote cho {{option}}",
+      "leading": "Đang dẫn"
+    },
+    "actions": {
+      "regenerate": "ĐỔI LỊCH TRÌNH",
+      "regenerated": "Đã đổi {{count}} điểm dừng 🎲",
+      "allLocked": "Khoá hết rồi. Mở một điểm để đổi.",
+      "share": "CHIA SẺ",
+      "linkCopied": "Đã copy link mời. Đi rủ thôi.",
+      "confirm": "CHỐT KÈO",
+      "confirmed": "Đã chốt kèo. Không được rút. 🎉",
+      "letsGo": "ĐI THÔI",
+      "started": "Đi chơi vui nha ✨"
+    },
+    "toast": {
+      "memberVoted": "{{name}} đã vote cho {{option}}"
+    },
+    "tripMapLabel": "Bản đồ các điểm dừng của kèo",
+    "legendDay": "Ngày {{n}}"
+  },
+  "notFound": {
+    "title": "Trang này không có trong kèo.",
+    "body": "Rẽ nhầm đâu đó rồi. Đêm vui nào cũng vậy.",
+    "cta": "VỀ TRANG CHỦ"
+  },
+  "explore": {
+    "title": "KHÁM PHÁ",
+    "subtitle": "Những chỗ đáng để ra khỏi nhà, quanh bạn.",
+    "searchLabel": "Tìm địa điểm",
+    "searchPlaceholder": "Tìm địa điểm…",
+    "all": "Tất cả",
+    "results_other": "{{count}} địa điểm",
+    "emptyTitle": "Không có gì gần đây. Chắc phải mở rộng bán kính rồi.",
+    "emptyCta": "TÌM XA HƠN",
+    "mapLabel": "Bản đồ Việt Nam với các địa điểm",
+    "you": "Bạn",
+    "showPlace": "Xem {{name}} trên bản đồ",
+    "close": "Đóng",
+    "scope": "Khu vực",
+    "scopeNear": "Gần tôi",
+    "scopeAll": "Toàn Việt Nam"
+  },
+  "plans": {
+    "title": "KÈO CỦA BẠN",
+    "subtitle": "Những kèo sắp tới và kỷ niệm sau đó.",
+    "tabUpcoming": "Sắp tới",
+    "tabMemories": "Kỷ niệm",
+    "open": "MỞ"
+  },
+  "profile": {
+    "edit": "SỬA HỒ SƠ",
+    "share": "Chia sẻ hồ sơ",
+    "linkCopied": "Đã copy link hồ sơ.",
+    "stats": {
+      "plansMade": "Kèo",
+      "placesVisited": "Địa điểm",
+      "friends": "Bạn bè"
+    },
+    "chaosScore": "Điểm hỗn loạn",
+    "chaosCaption": "Hỗn hơn {{percent}}% người dùng.",
+    "vibeMix": "Vibe của bạn",
+    "badges": "Huy hiệu",
+    "locked": "Chưa mở khoá",
+    "badge": {
+      "night_owl": "Cú đêm",
+      "chaos_agent": "Đặc vụ hỗn loạn",
+      "food_hunter": "Thợ săn đồ ăn",
+      "streak_5": "Chuỗi 5 tuần",
+      "explorer": "Nhà thám hiểm",
+      "early_bird": "Chim dậy sớm"
+    },
+    "signOut": "Đăng xuất"
+  },
+  "notifications": {
+    "title": "THÔNG BÁO",
+    "markAllRead": "Đánh dấu đã đọc",
+    "today": "Hôm nay",
+    "earlier": "Trước đó",
+    "emptyTitle": "Hết thông báo rồi.",
+    "emptyBody": "Đi tạo chút ồn ào đi.",
+    "unread": "Chưa đọc",
+    "accept": "ĐỒNG Ý",
+    "decline": "Từ chối",
+    "rate": "ĐÁNH GIÁ",
+    "accepted": "Bạn và {{name}} giờ là bạn bè 🤝",
+    "type": {
+      "PLAN_VOTE_CAST": "<b>{{name}}</b> đã vote cho {{target}} trong {{plan}}",
+      "PLAN_MEMBER_JOINED": "<b>{{name}}</b> đã vào kèo {{plan}}",
+      "FRIEND_REQUEST_SENT": "<b>{{name}}</b> muốn kết bạn",
+      "PLAN_CONFIRMED": "<b>{{name}}</b> đã chốt {{plan}}. Đi thôi.",
+      "PLAN_COMPLETED": "<b>{{plan}}</b> xong rồi. Thấy sao?",
+      "FRIEND_REQUEST_ACCEPTED": "<b>{{name}}</b> đã chấp nhận lời mời kết bạn"
+    }
+  },
+  "planEdit": {
+    "editStop": "Sửa điểm dừng",
+    "addStop": "Thêm điểm dừng",
+    "editDetails": "Sửa thông tin kèo",
+    "edit": "Sửa {{title}}",
+    "searchLabel": "Tìm ý tưởng hoặc địa điểm",
+    "searchPlaceholder": "Tìm ý tưởng hoặc địa điểm…",
+    "suggestions": "Gợi ý",
+    "customPlace": "Dùng “{{query}}” làm địa điểm riêng",
+    "fields": {
+      "emoji": "Biểu tượng",
+      "title": "Làm gì?",
+      "titlePlaceholder": "vd: Ăn khuya",
+      "place": "Ở đâu?",
+      "placePlaceholder": "Tên địa điểm hoặc địa chỉ",
+      "duration": "Bao lâu?",
+      "cost": "Chi phí mỗi người (VND)",
+      "planTitle": "Tên kèo",
+      "startTime": "Giờ bắt đầu",
+      "time": "Giờ",
+      "timeAuto": "Tự động",
+      "timeManual": "Chọn giờ",
+      "timeAutoHint": "Nối tiếp điểm dừng trước.",
+      "dayOfTrip": "Ngày",
+      "startDate": "Ngày bắt đầu"
+    },
+    "timesHint": "Giờ các điểm dừng tự cập nhật theo giờ bắt đầu.",
+    "save": "LƯU",
+    "cancel": "Huỷ",
+    "delete": "Xoá điểm dừng",
+    "saved": "Đã cập nhật điểm dừng ✨",
+    "added": "Đã thêm vào lộ trình 📍",
+    "removed": "Đã xoá điểm dừng",
+    "undo": "Hoàn tác",
+    "detailsSaved": "Đã cập nhật kèo",
+    "lastStop": "Kèo cần ít nhất một điểm dừng.",
+    "reorder": "Đổi thứ tự {{title}}. Kéo, hoặc dùng phím mũi tên lên/xuống.",
+    "readOnly": "Chỉ chủ kèo mới sửa được kèo này.",
+    "errors": {
+      "titleRequired": "Đặt tên cho điểm dừng",
+      "placeRequired": "Ở đâu vậy?",
+      "costInvalid": "Nhập số tiền hợp lệ",
+      "planTitleRequired": "Đặt tên cho kèo",
+      "startTimeInvalid": "Chọn giờ bắt đầu"
+    },
+    "addDay": "Thêm ngày",
+    "removeDay": "Xoá ngày {{n}}",
+    "dayNotEmpty": "Hãy chuyển hoặc xoá các điểm dừng của ngày này trước.",
+    "dayN": "Ngày {{n}}",
+    "dayStart": "Giờ bắt đầu ngày {{n}}",
+    "dayProvince": "Tỉnh thành ngày {{n}}",
+    "jumpToDay": "Tới ngày {{n}}",
+    "overlap": "Trùng giờ với điểm trước",
+    "tripMap": "Bản đồ chuyến đi",
+    "maxDays": "Chuyến đi tối đa {{count}} ngày."
+  },
+  "offline": {
+    "title": "Mất sóng rồi.",
+    "body": "Hình như wifi đi lạc đâu mất. Kèo của bạn vẫn an toàn — có mạng lại là tiếp tục ngay.",
+    "retry": "THỬ LẠI",
+    "checking": "Đang kiểm tra…",
+    "stillOffline": "Vẫn chưa có mạng. Mây hôm nay dày quá.",
+    "continue": "Xem ngoại tuyến",
+    "banner": "Bạn đang ngoại tuyến — đang hiện các kèo đã lưu.",
+    "bannerRetry": "Thử lại",
+    "backOnline": "Có mạng lại rồi ✨"
+  },
+  "map": {
+    "filterLabel": "Hiện địa điểm trên bản đồ",
+    "categories": {
+      "food": "Ăn uống",
+      "cafe": "Cà phê",
+      "nightlife": "Quẩy đêm",
+      "shop": "Cửa hàng",
+      "office": "Văn phòng",
+      "sight": "Tham quan"
+    },
+    "zoomIn": "Phóng to",
+    "zoomOut": "Thu nhỏ",
+    "recenter": "Về các điểm của kèo",
+    "zoomHint": "Phóng to để xem địa điểm thật",
+    "loading": "Đang tìm địa điểm…",
+    "error": "Không kết nối được OpenStreetMap — chạm để thử lại",
+    "count_other": "{{count}} địa điểm quanh đây",
+    "hours": "Giờ mở cửa",
+    "openInOsm": "Mở trên OpenStreetMap",
+    "empty": "Chỗ này chưa có địa điểm — thử kéo sang chỗ khác"
+  }
+}

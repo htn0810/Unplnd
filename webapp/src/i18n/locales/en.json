@@ -1,0 +1,506 @@
+{
+  "common": {
+    "appHomeLabel": "UNPLND home",
+    "mainNavigation": "Main",
+    "justNow": "just now",
+    "tryAgain": "TRY AGAIN",
+    "seeAll": "See all",
+    "isOnline": "{{name}} is online",
+    "notifications": "Notifications",
+    "notificationsUnread": "Notifications, {{count}} unread",
+    "changeLanguage": "Change language. Current: {{language}}",
+    "theme": "Theme: {{current}}. Switch to {{next}}",
+    "themes": {
+      "dark": "Twilight",
+      "light": "Day",
+      "system": "System"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "explore": "Explore",
+    "plans": "Plans",
+    "profile": "Profile",
+    "makePlan": "Make a plan"
+  },
+  "home": {
+    "greeting": "Hey {{name}}, what's the plan?",
+    "greetingAnonymous": "What's the plan?",
+    "heroLine1": "YOU DON'T",
+    "heroLine2": "HAVE ONE.",
+    "heroLine3": "THAT'S THE POINT.",
+    "tonightCouldBe": "Tonight could be",
+    "shuffleVibe": "Tonight could be {{vibe}}. Shuffle the vibe",
+    "makePlan": "MAKE A PLAN",
+    "happeningNow": "Happening now",
+    "recentMemories": "Recent memories",
+    "sticker": {
+      "STOP": "{{time}} · {{label}}",
+      "JOINED_one": "{{count}} friend just joined",
+      "JOINED_other": "{{count}} friends just joined",
+      "CHALLENGE": "Challenge: {{label}}"
+    },
+    "vibesTitle": "What's the vibe tonight?",
+    "vibesSubtitle": "Pick one. We'll build the night around it.",
+    "pickVibe": "Make a {{vibe}} plan",
+    "nearbyTitle": "Worth leaving the house for",
+    "nearbySubtitle": "Close by. Open now.",
+    "challengeTitle": "Tonight's random challenge",
+    "challengeShuffle": "SHUFFLE",
+    "challengeUse": "ADD TO MY PLAN",
+    "equation": {
+      "people": "PEOPLE",
+      "time": "TIME",
+      "budget": "BUDGET",
+      "vibe": "VIBE",
+      "letsGo": "LET'S GO",
+      "pitch": "UNPLND turns “I don't know, you decide” into a plan worth leaving the house for."
+    }
+  },
+  "join": {
+    "invitedBy": "<b>{{name}}</b> invited you",
+    "going_one": "{{count}} going",
+    "going_other": "{{count}} going",
+    "route": "The route",
+    "join": "JOIN THE PLAN",
+    "joining": "Squeezing you in…",
+    "joined": "You're in! 🎉",
+    "notNow": "Not now",
+    "invalidTitle": "This invite expired or never existed.",
+    "invalidBody": "Ask your friend for a fresh link.",
+    "label": "Got an invite code?",
+    "submit": "JOIN"
+  },
+  "friends": {
+    "quiet": "Your friends are suspiciously quiet tonight.",
+    "freeOne": "is free tonight",
+    "freeTwo": "are free tonight",
+    "freeMore": "+{{count}} are free tonight"
+  },
+  "plan": {
+    "day": {
+      "TONIGHT": "Tonight",
+      "TOMORROW": "Tomorrow",
+      "TODAY": "Today"
+    },
+    "perPerson": "/person",
+    "itinerary": "Itinerary",
+    "hereNow": "{{count}} here now",
+    "votesPending_one": "{{count}} vote",
+    "votesPending_other": "{{count}} votes",
+    "waitingOnYou": "waiting on you",
+    "youVoted": "✓ You voted",
+    "vote": "VOTE",
+    "rated": "Rated {{rating}} out of 5",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days"
+  },
+  "activity": {
+    "PLAN_VOTE_CAST": "voted for {{target}}",
+    "PLAN_VOTE_UPDATED": "changed their vote to {{target}}",
+    "PLAN_MEMBER_JOINED": "joined the plan",
+    "PLAN_MEMBER_LEFT": "left the plan"
+  },
+  "memories": {
+    "errorTitle": "Something went sideways.",
+    "errorBody": "We couldn't load your memories right now.",
+    "emptyTitle": "No plans yet. That's suspicious.",
+    "emptyBody": "Your first memory is one plan away."
+  },
+  "vibes": {
+    "CHILL": "Coffee, sunset, conversation",
+    "FOOD": "Restaurants, street food, food hunting",
+    "PARTY": "Music, nightlife, social",
+    "NERDY": "Games, books, museums, tech",
+    "OUTDOOR": "Parks, walking, sports",
+    "DATE": "Romantic, cozy, aesthetic",
+    "CHAOS": "Unexpected and unusual",
+    "SURPRISE": "Let UNPLND decide everything"
+  },
+  "place": {
+    "openUntil": "Open till {{time}}",
+    "openAllDay": "Always open",
+    "free": "Free",
+    "addToPlan": "Add {{name}} to a plan",
+    "price": "Price level {{level}} of 3"
+  },
+  "footer": {
+    "tagline": "No plans. Just vibes.",
+    "navLabel": "Footer",
+    "copyright": "© {{year}} {{owner}}. All rights reserved.",
+    "madeWith": "Made with 🍜 and a few questionable decisions."
+  },
+  "auth": {
+    "signIn": {
+      "title": "Sign in",
+      "subtitle": "Good to see you again.",
+      "submit": "SIGN IN",
+      "submitting": "Checking the vibe…",
+      "noAccount": "No account yet?",
+      "toSignUp": "Sign up",
+      "forgot": "Forgot password?"
+    },
+    "signUp": {
+      "title": "Create account",
+      "subtitle": "Takes 20 seconds. Faster than picking where to eat.",
+      "submit": "CREATE ACCOUNT",
+      "submitting": "Setting things up…",
+      "hasAccount": "Already have an account?",
+      "toSignIn": "Sign in",
+      "terms": "By signing up, you agree to our <terms>Terms</terms> and <privacy>Privacy Policy</privacy>."
+    },
+    "social": {
+      "google": "Continue with Google",
+      "facebook": "Continue with Facebook",
+      "divider": "or with username"
+    },
+    "fields": {
+      "username": "Username",
+      "usernamePlaceholder": "e.g. nhan.unplnd",
+      "password": "Password",
+      "passwordPlaceholder": "At least 8 characters",
+      "confirmPassword": "Confirm password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
+    },
+    "errors": {
+      "usernameRequired": "Enter your username",
+      "usernameFormat": "3–20 characters: letters, numbers, . or _",
+      "passwordRequired": "Enter your password",
+      "passwordMin": "Use at least 8 characters",
+      "passwordStrength": "Mix letters and numbers",
+      "passwordMismatch": "Passwords don't match",
+      "generic": "Something went sideways. Try again."
+    },
+    "panel": {
+      "signInTitle": "Welcome back.",
+      "signInBody": "The group chat is still arguing. Let's settle it.",
+      "signUpTitle": "No plans? Perfect.",
+      "signUpBody": "Join UNPLND and never type “I don't know, you decide” again."
+    }
+  },
+  "createPlan": {
+    "close": "Close",
+    "stepOf": "Step {{current}} of {{total}}",
+    "back": "Back",
+    "next": "NEXT",
+    "submit": "MAKE THE PLAN",
+    "people": {
+      "title": "WHO'S COMING?",
+      "subtitle": "Tap your crew. Solo missions count too.",
+      "you": "You",
+      "count_one": "You + {{count}} friend",
+      "count_other": "You + {{count}} friends",
+      "solo": "Just you. Bold."
+    },
+    "duration": {
+      "title": "HOW LONG?",
+      "subtitle": "Roughly. Nobody's checking.",
+      "d30": "Quick bite",
+      "d60": "One good thing",
+      "d120": "Proper hangout",
+      "d180": "Main character night",
+      "d240": "Don't wait up",
+      "max": "4h+",
+      "titlePerDay": "HOW LONG EACH DAY?"
+    },
+    "budget": {
+      "title": "WHAT'S THE BUDGET?",
+      "subtitle": "Per person. We'll keep it honest.",
+      "b100000": "Street food royalty",
+      "b300000": "Comfortably chaotic",
+      "b500000": "Treat yourselves",
+      "b1000000": "Money is a social construct",
+      "max": "1M+",
+      "perPerson": "/ person",
+      "perPersonDay": "/ person / day"
+    },
+    "vibe": {
+      "title": "WHAT'S THE VIBE?",
+      "subtitle": "This changes everything. Literally."
+    },
+    "location": {
+      "title": "WHERE?",
+      "subtitle": "We'll stay inside this circle.",
+      "current": "Current location",
+      "currentValue": "District 1, Ho Chi Minh City",
+      "radius": "Radius",
+      "radiusValue": "{{km}} km",
+      "nearbyCount": "~{{count}} spots in range",
+      "mode": {
+        "nearby": "Near me",
+        "province": "Another province"
+      },
+      "searchProvince": "Search provinces & cities…",
+      "searchProvinceLabel": "Search provinces",
+      "noProvince": "No province matches “{{query}}”."
+    },
+    "summary": {
+      "title": "Your plan so far",
+      "empty": "Nothing yet. That's the fun part.",
+      "people": "Crew",
+      "duration": "Time",
+      "budget": "Budget",
+      "vibe": "Vibe",
+      "radius": "Radius",
+      "when": "When",
+      "where": "Where"
+    },
+    "generating": {
+      "lines": [
+        "Checking the vibe…",
+        "Finding something nearby…",
+        "Making questionable decisions…",
+        "Done."
+      ],
+      "ready": "YOUR PLAN IS READY."
+    },
+    "when": {
+      "title": "WHEN?",
+      "subtitle": "Pick a day — or drag out a whole trip.",
+      "calendarLabel": "Choose dates",
+      "prevMonth": "Previous month",
+      "nextMonth": "Next month",
+      "startTime": "Start time",
+      "custom": "Custom",
+      "maxDays": "Trips can be up to {{count}} days.",
+      "presets": {
+        "morning": "Morning",
+        "lunch": "Lunch",
+        "afternoon": "Afternoon",
+        "evening": "Evening",
+        "late": "Late night"
+      }
+    }
+  },
+  "planDetail": {
+    "back": "All plans",
+    "notFoundTitle": "This plan wandered off.",
+    "notFoundBody": "It may have been cancelled, or the link is wrong.",
+    "backHome": "BACK HOME",
+    "people_one": "{{count}} person",
+    "people_other": "{{count}} people",
+    "heroLine1": "YOUR NIGHT",
+    "heroLine2": "IS LOOKING",
+    "heroLine3": "VERY UNPLND.",
+    "status": {
+      "DRAFT": "Draft",
+      "GENERATING": "Generating",
+      "OPEN": "Open",
+      "VOTING": "Voting",
+      "CONFIRMED": "Confirmed",
+      "READY_TO_GO": "Ready to go",
+      "IN_PROGRESS": "In progress",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled"
+    },
+    "progress": "Plan progress",
+    "itinerary": "Itinerary",
+    "lock": "Lock {{title}}",
+    "unlock": "Unlock {{title}}",
+    "locked": "Locked",
+    "replace": "Replace {{title}}",
+    "free": "Free",
+    "challenge": "Random challenge",
+    "budget": {
+      "title": "Budget check",
+      "of": "{{spent}} of {{budget}} per person",
+      "under": "Under budget. Nice.",
+      "over": "Over budget by {{amount}}. Bold."
+    },
+    "members": {
+      "title": "Who's in",
+      "online": "{{count}} here now",
+      "invite": "INVITE",
+      "creator": "Host"
+    },
+    "voting": {
+      "title": "Group vote",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes",
+      "yourVote": "Your vote",
+      "voteFor": "Vote for {{option}}",
+      "leading": "Leading"
+    },
+    "actions": {
+      "regenerate": "REGENERATE",
+      "regenerated": "Rolled the dice on {{count}} stops 🎲",
+      "allLocked": "Everything's locked. Unlock a stop to reroll.",
+      "share": "SHARE",
+      "linkCopied": "Invite link copied. Go recruit.",
+      "confirm": "CONFIRM PLAN",
+      "confirmed": "Plan locked in. No take-backs. 🎉",
+      "letsGo": "LET'S GO",
+      "started": "Have fun out there ✨"
+    },
+    "toast": {
+      "memberVoted": "{{name}} voted for {{option}}"
+    },
+    "tripMapLabel": "Map of this plan's stops",
+    "legendDay": "Day {{n}}"
+  },
+  "notFound": {
+    "title": "This page didn't make the plan.",
+    "body": "Wrong turn somewhere. Happens to the best nights.",
+    "cta": "BACK HOME"
+  },
+  "explore": {
+    "title": "EXPLORE",
+    "subtitle": "Places worth leaving the house for, near you.",
+    "searchLabel": "Search places",
+    "searchPlaceholder": "Search places…",
+    "all": "All",
+    "results_one": "{{count}} place",
+    "results_other": "{{count}} places",
+    "emptyTitle": "Nothing nearby. We might need to expand the radius.",
+    "emptyCta": "SEARCH FURTHER",
+    "mapLabel": "Map of Vietnam with places",
+    "you": "You",
+    "showPlace": "Show {{name}} on the map",
+    "close": "Close",
+    "scope": "Area",
+    "scopeNear": "Near me",
+    "scopeAll": "Whole Vietnam"
+  },
+  "plans": {
+    "title": "YOUR PLANS",
+    "subtitle": "Upcoming nights and the memories they turned into.",
+    "tabUpcoming": "Upcoming",
+    "tabMemories": "Memories",
+    "open": "OPEN"
+  },
+  "profile": {
+    "edit": "EDIT PROFILE",
+    "share": "Share profile",
+    "linkCopied": "Profile link copied.",
+    "stats": {
+      "plansMade": "Plans",
+      "placesVisited": "Places",
+      "friends": "Friends"
+    },
+    "chaosScore": "Chaos score",
+    "chaosCaption": "Wilder than {{percent}}% of planners.",
+    "vibeMix": "Your vibe mix",
+    "badges": "Badges",
+    "locked": "Locked",
+    "badge": {
+      "night_owl": "Night Owl",
+      "chaos_agent": "Chaos Agent",
+      "food_hunter": "Food Hunter",
+      "streak_5": "5-week streak",
+      "explorer": "Explorer",
+      "early_bird": "Early Bird"
+    },
+    "signOut": "Sign out"
+  },
+  "notifications": {
+    "title": "NOTIFICATIONS",
+    "markAllRead": "Mark all read",
+    "today": "Today",
+    "earlier": "Earlier",
+    "emptyTitle": "All caught up.",
+    "emptyBody": "Go make some noise.",
+    "unread": "Unread",
+    "accept": "ACCEPT",
+    "decline": "Decline",
+    "rate": "RATE IT",
+    "accepted": "You and {{name}} are friends now 🤝",
+    "type": {
+      "PLAN_VOTE_CAST": "<b>{{name}}</b> voted for {{target}} in {{plan}}",
+      "PLAN_MEMBER_JOINED": "<b>{{name}}</b> joined {{plan}}",
+      "FRIEND_REQUEST_SENT": "<b>{{name}}</b> wants to be friends",
+      "PLAN_CONFIRMED": "<b>{{name}}</b> locked in {{plan}}. It's happening.",
+      "PLAN_COMPLETED": "<b>{{plan}}</b> is done. How was it?",
+      "FRIEND_REQUEST_ACCEPTED": "<b>{{name}}</b> accepted your friend request"
+    }
+  },
+  "planEdit": {
+    "editStop": "Edit stop",
+    "addStop": "Add a stop",
+    "editDetails": "Edit plan details",
+    "edit": "Edit {{title}}",
+    "searchLabel": "Search ideas or places",
+    "searchPlaceholder": "Search ideas or places…",
+    "suggestions": "Suggestions",
+    "customPlace": "Use “{{query}}” as a custom place",
+    "fields": {
+      "emoji": "Icon",
+      "title": "What are we doing?",
+      "titlePlaceholder": "e.g. Late-night snacks",
+      "place": "Where?",
+      "placePlaceholder": "Place name or address",
+      "duration": "How long?",
+      "cost": "Cost per person (VND)",
+      "planTitle": "Plan name",
+      "startTime": "Start time",
+      "time": "Time",
+      "timeAuto": "Auto",
+      "timeManual": "Set time",
+      "timeAutoHint": "Follows the previous stop.",
+      "dayOfTrip": "Day",
+      "startDate": "Start date"
+    },
+    "timesHint": "Stop times update automatically from the start time.",
+    "save": "SAVE",
+    "cancel": "Cancel",
+    "delete": "Delete stop",
+    "saved": "Stop updated ✨",
+    "added": "Stop added to the route 📍",
+    "removed": "Stop removed",
+    "undo": "Undo",
+    "detailsSaved": "Plan updated",
+    "lastStop": "A plan needs at least one stop.",
+    "reorder": "Reorder {{title}}. Drag, or use arrow up and down.",
+    "readOnly": "Only the host can edit this plan.",
+    "errors": {
+      "titleRequired": "Give this stop a name",
+      "placeRequired": "Where is it?",
+      "costInvalid": "Enter a valid amount",
+      "planTitleRequired": "Give the plan a name",
+      "startTimeInvalid": "Pick a start time"
+    },
+    "addDay": "Add a day",
+    "removeDay": "Remove day {{n}}",
+    "dayNotEmpty": "Move or delete this day's stops first.",
+    "dayN": "Day {{n}}",
+    "dayStart": "Day {{n}} start time",
+    "dayProvince": "Day {{n}} province",
+    "jumpToDay": "Jump to day {{n}}",
+    "overlap": "Overlaps the previous stop",
+    "tripMap": "Trip map",
+    "maxDays": "Trips can be up to {{count}} days."
+  },
+  "offline": {
+    "title": "Lost the signal.",
+    "body": "Looks like the wifi wandered off. Your plans are safe — we'll pick up right where you left off.",
+    "retry": "TRY AGAIN",
+    "checking": "Checking…",
+    "stillOffline": "Still offline. The clouds are thick today.",
+    "continue": "Browse offline",
+    "banner": "You're offline — showing saved plans.",
+    "bannerRetry": "Retry",
+    "backOnline": "Back online ✨"
+  },
+  "map": {
+    "filterLabel": "Show places on the map",
+    "categories": {
+      "food": "Food",
+      "cafe": "Cafés",
+      "nightlife": "Nightlife",
+      "shop": "Shops",
+      "office": "Offices",
+      "sight": "Sights"
+    },
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "recenter": "Back to our pins",
+    "zoomHint": "Zoom in to see real places",
+    "loading": "Finding places…",
+    "error": "Couldn't reach OpenStreetMap — tap to retry",
+    "count_one": "{{count}} place nearby",
+    "count_other": "{{count}} places nearby",
+    "hours": "Hours",
+    "openInOsm": "Open in OpenStreetMap",
+    "empty": "No named places right here — try panning around"
+  }
+}

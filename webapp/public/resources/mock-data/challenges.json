@@ -1,0 +1,8 @@
+[
+  { "id": "challenge_1", "emoji": "🍫", "text": { "en": "Everyone picks a snack for someone else.", "vi": "Mỗi người chọn đồ ăn vặt cho người khác." } },
+  { "id": "challenge_2", "emoji": "📸", "text": { "en": "One photo per stop. No retakes.", "vi": "Mỗi điểm dừng chỉ một tấm ảnh. Không chụp lại." } },
+  { "id": "challenge_3", "emoji": "🗺️", "text": { "en": "Whoever arrives last picks the next stop.", "vi": "Ai đến trễ nhất chọn điểm tiếp theo." } },
+  { "id": "challenge_4", "emoji": "🪙", "text": { "en": "Flip a coin at every crossroads.", "vi": "Gặp ngã tư thì tung đồng xu." } },
+  { "id": "challenge_5", "emoji": "🧋", "text": { "en": "The quietest person picks dessert.", "vi": "Người ít nói nhất được chọn món tráng miệng." } },
+  { "id": "challenge_6", "emoji": "🎤", "text": { "en": "Loser of rock-paper-scissors sings the first song.", "vi": "Ai thua oẳn tù tì hát bài đầu tiên." } }
+]

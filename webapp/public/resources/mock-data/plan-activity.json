@@ -1,0 +1,36 @@
+[
+  {
+    "id": "act_1",
+    "planId": "plan_123",
+    "type": "PLAN_VOTE_CAST",
+    "actor": "Linh",
+    "target": "🍜 Bún thịt nướng"
+  },
+  {
+    "id": "act_2",
+    "planId": "plan_123",
+    "type": "PLAN_MEMBER_JOINED",
+    "actor": "Khoa"
+  },
+  {
+    "id": "act_3",
+    "planId": "plan_123",
+    "type": "PLAN_VOTE_CAST",
+    "actor": "Bao",
+    "target": "🎮 Arcade"
+  },
+  {
+    "id": "act_4",
+    "planId": "plan_123",
+    "type": "PLAN_VOTE_UPDATED",
+    "actor": "Mai",
+    "target": "🍕 Pizza"
+  },
+  {
+    "id": "act_5",
+    "planId": "plan_123",
+    "type": "PLAN_VOTE_CAST",
+    "actor": "Linh",
+    "target": "🎲 Snack swap"
+  }
+]
