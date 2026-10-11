@@ -49,7 +49,8 @@ wiki/
 │   ├── web.md
 │   ├── mobile.md                   # future
 │   ├── api-gateway.md
-│   ├── user-service.md
+│   ├── identity-service.md
+│   ├── profile-service.md
 │   ├── plan-service.md
 │   ├── place-service.md
 │   ├── notification-service.md
@@ -131,7 +132,7 @@ UNPLND runs Spring Boot microservices behind an API Gateway, Kafka as event back
 
 | Signal                                                     | What it means                       |
 |------------------------------------------------------------|-------------------------------------|
-| New service in `services/`, new app, or new package        | Architecture changed                |
+| New backend service (`*-service/` at repo root), new app, or new package | Architecture changed                |
 | New container in Docker Compose / new CI job               | Infrastructure changed              |
 | JWT / security config change                               | Auth flow changed                   |
 | New role or permission check (creator vs member)           | Authorization rule changed          |

@@ -59,14 +59,14 @@ Work through the repository in this order. Read broadly before writing anything.
 
 ### 1. Understand the repository structure
 
-- Root: `webapp/`, `services/`, `packages/`, `infrastructure/`, `plans/`
+- Root: `webapp/`, standalone backend services (`api-gateway/`, `*-service/`), `packages/`, `infrastructure/`, `plans/`
 - `webapp/package.json` — frontend dependencies and scripts
 - each service's `build.gradle.kts` — Spring Boot / Java versions, dependencies
 - `plans/` — existing feature plans and locked terminology
 
 ### 2. Understand the backend services
 
-For each service in `services/`:
+For each backend service at the repo root (`api-gateway/`, `*-service/`):
 
 - `*Application.java` and `application*.properties` — profiles, datastores, Kafka config
 - feature packages — `*Controller`, `*Service` (+ `impl/`), `*Repository`, entities/documents, `dto/`
@@ -76,7 +76,8 @@ For each service in `services/`:
 - `place-service` — `PlaceProvider`, `RoutingProvider`, Redis caching
 - `notification-service` — WebSocket / STOMP config, destinations, presence
 - `api-gateway` — routes, filters (JWT, correlation id, rate limit, CORS)
-- `user-service` — Flyway migrations in `db/migration/`
+- `identity-service` — username/password auth, Google & Facebook OAuth2 login, JWT + refresh tokens, Flyway migrations in `db/migration/`
+- `profile-service` (planned) — profiles, friendships, preferences
 
 ### 3. Understand the contracts
 
@@ -122,7 +123,8 @@ wiki/
 │   ├── web.md
 │   ├── mobile.md
 │   ├── api-gateway.md
-│   ├── user-service.md
+│   ├── identity-service.md
+│   ├── profile-service.md
 │   ├── plan-service.md
 │   ├── place-service.md
 │   ├── notification-service.md

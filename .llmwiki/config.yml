@@ -80,67 +80,86 @@ mappings:
       - architecture/overview.md
 
   # ── Backend services ───────────────────────────────────────────────────
-  - match: services/api-gateway/**
+  - match: api-gateway/**
     update:
       - modules/api-gateway.md
       - architecture/backend.md
 
-  - match: services/user-service/**
+  - match: identity-service/**
     update:
-      - modules/user-service.md
+      - modules/identity-service.md
 
-  - match: services/user-service/src/main/resources/db/migration/**
+  - match: identity-service/**/auth/**
+    update:
+      - features/auth.md
+      - modules/identity-service.md
+
+  - match: identity-service/**/oauth/**
+    update:
+      - features/auth.md
+      - modules/identity-service.md
+
+  - match: identity-service/src/main/resources/db/migration/**
     update:
       - architecture/data-storage.md
-      - modules/user-service.md
+      - modules/identity-service.md
 
-  - match: services/plan-service/**
+  - match: profile-service/**
+    update:
+      - modules/profile-service.md
+
+  - match: profile-service/src/main/resources/db/migration/**
+    update:
+      - architecture/data-storage.md
+      - modules/profile-service.md
+
+  - match: plan-service/**
     update:
       - modules/plan-service.md
 
-  - match: services/plan-service/**/plan/PlanStateMachine.java
+  - match: plan-service/**/plan/PlanStateMachine.java
     update:
       - features/plan-lifecycle.md
 
-  - match: services/plan-service/**/voting/**
+  - match: plan-service/**/voting/**
     update:
       - features/voting.md
 
-  - match: services/plan-service/**/invite/**
+  - match: plan-service/**/invite/**
     update:
       - features/invite-and-join.md
 
-  - match: services/plan-service/**/itinerary/**
+  - match: plan-service/**/itinerary/**
     update:
       - features/itinerary-generation.md
 
-  - match: services/plan-service/**/memory/**
+  - match: plan-service/**/memory/**
     update:
       - features/memory.md
 
-  - match: services/place-service/**
+  - match: place-service/**
     update:
       - modules/place-service.md
       - features/place-discovery.md
 
-  - match: services/notification-service/**
+  - match: notification-service/**
     update:
       - modules/notification-service.md
       - features/notifications.md
 
-  - match: services/notification-service/**/websocket/**
+  - match: notification-service/**/websocket/**
     update:
       - architecture/realtime.md
 
-  - match: services/notification-service/**/presence/**
+  - match: notification-service/**/presence/**
     update:
       - features/realtime-presence.md
 
-  - match: "services/*/**/event/**"
+  - match: "*-service/**/event/**"
     update:
       - architecture/kafka-events.md
 
-  - match: "services/*/**/shared/**"
+  - match: "*-service/**/shared/**"
     update:
       - architecture/backend.md
 

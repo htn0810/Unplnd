@@ -292,7 +292,7 @@ Document interactions with:
 - OSRM (routing)
 - Kafka
 - Redis
-- MySQL (User Service)
+- MySQL (Identity Service; Profile Service planned)
 - MongoDB (Plan, Place, Notification Services)
 - Future: Ollama / AI recommendation, MinIO / S3 for photos
 

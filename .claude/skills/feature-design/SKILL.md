@@ -47,7 +47,7 @@ Take the user's thought as-is. Then derive:
 | `events`   | Kafka contracts, producers, consumers, DLT, idempotency, WebSocket push |
 | `devops`   | Docker Compose, gateway routes, CI, k8s, monitoring                     |
 
-Supported services: `web`, `api-gateway`, `user-service`, `plan-service`, `place-service`, `notification-service`, `event-contracts`, `api-contracts`, `infrastructure`.
+Supported services: `web`, `api-gateway`, `identity-service`, `profile-service`, `plan-service`, `place-service`, `notification-service`, `event-contracts`, `api-contracts`, `infrastructure`.
 
 ### 2. Shape the Idea
 
@@ -147,7 +147,7 @@ Use these baseline checks when applicable:
 
 ```bash
 # Backend (per service)
-cd services/{service} && ./gradlew build --console=plain
+cd {service} && ./gradlew build --console=plain
 
 # Frontend (from repo root)
 npm --prefix webapp run typecheck && npm --prefix webapp run lint && npm --prefix webapp run test

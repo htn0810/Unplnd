@@ -58,7 +58,7 @@ VOTING | CONFIRMED | READY_TO_GO → CANCELLED
 
 > Note: the spec mentions styled-components — **it is replaced by shadcn/ui + Tailwind CSS**. Do not add styled-components, CSS-in-JS, or other UI kits (MUI, Chakra, AntD).
 
-### Backend (`services/*`)
+### Backend (`*-service/`, `api-gateway/`)
 
 | Concern | Choice |
 |---|---|
@@ -66,8 +66,8 @@ VOTING | CONFIRMED | READY_TO_GO → CANCELLED
 | Framework | Spring Boot 3.x |
 | Build | Gradle (Kotlin DSL), one build per service |
 | Gateway | Spring Cloud Gateway |
-| Security | Spring Security, JWT |
-| User DB | MySQL 8 + Spring Data JPA + Flyway |
+| Security | Spring Security, JWT; Spring Security OAuth2 Client (Google, Facebook login) in identity-service |
+| Identity / Profile DB | MySQL 8 + Spring Data JPA + Flyway |
 | Plan / Place / Notification DB | MongoDB + Spring Data MongoDB |
 | Cache / presence / rate limit | Redis |
 | Messaging | Apache Kafka (KRaft) + Spring Kafka |
@@ -83,7 +83,7 @@ VOTING | CONFIRMED | READY_TO_GO → CANCELLED
 
 ### Infrastructure
 
-Docker Compose for local dev (`infrastructure/docker/docker-compose.yml`): web, api-gateway, user/plan/place/notification services, mysql, mongodb, redis, kafka, kafka-ui. CI/CD on GitHub Actions, images pushed to GHCR. Kubernetes later (`infrastructure/k8s`).
+Docker Compose for local dev (`infrastructure/docker/docker-compose.yml`): web, api-gateway, identity/profile/plan/place/notification services, mysql, mongodb, redis, kafka, kafka-ui. CI/CD on GitHub Actions, images pushed to GHCR. Kubernetes later (`infrastructure/k8s`).
 
 ---
 
@@ -93,12 +93,12 @@ Docker Compose for local dev (`infrastructure/docker/docker-compose.yml`): web, 
 unplnd/
 ├── webapp/                     # React PWA (Vite)
 ├── mobile/                     # Future: React Native + Expo
-├── services/
-│   ├── api-gateway/
-│   ├── user-service/           # MySQL
-│   ├── plan-service/           # MongoDB
-│   ├── place-service/          # MongoDB + Redis
-│   └── notification-service/   # MongoDB + WebSocket
+├── api-gateway/                # Each backend service is a standalone project at the repo root
+├── identity-service/           # MySQL — authentication (username/password, Google, Facebook)
+├── profile-service/            # MySQL — user information (planned)
+├── plan-service/               # MongoDB
+├── place-service/              # MongoDB + Redis
+├── notification-service/       # MongoDB + WebSocket
 ├── packages/
 │   ├── api-contracts/          # OpenAPI specs / generated TS types
 │   ├── event-contracts/        # Kafka event schemas (JSON Schema), shared by FE types + BE
@@ -110,6 +110,8 @@ unplnd/
 ├── docs/
 └── README.md
 ```
+
+One `.gitignore` at the repo root covers the webapp and every service — don't add per-project `.gitignore` files (delete the one Spring Initializr / Vite generates).
 
 ---
 
@@ -246,14 +248,14 @@ When a feature grows past ~10 files, group into `components/`, `hooks/` sub-fold
 
 ---
 
-## 6. Backend Module Layout (`services/<name>`)
+## 6. Backend Module Layout (`<name>-service/`)
 
 Follows [Spring Boot Project Structure: Best Practices Used in Production](https://dev.to/kamlesh_patil/spring-boot-project-structure-best-practices-used-in-production-4h85) — **feature-based packages** with a `shared` package, controller → service (interface + impl) → repository layering.
 
-Each service is an independent Spring Boot app with its own build, Dockerfile, and database. Base package: `app.unplnd.<service>` (e.g. `app.unplnd.plan`).
+Each service is a standalone Spring Boot project at the repo root (no shared parent build, no `services/` folder) with its own Gradle wrapper, Dockerfile, and database. Base package: `app.unplnd.<service>` (e.g. `app.unplnd.plan`).
 
 ```text
-services/plan-service/
+plan-service/
 ├── build.gradle.kts
 ├── Dockerfile
 └── src/
@@ -293,7 +295,7 @@ services/plan-service/
     │       ├── application-dev.properties
     │       ├── application-prod.properties
     │       ├── application-test.properties
-    │       ├── db/migration/                      # Flyway scripts (user-service only)
+    │       ├── db/migration/                      # Flyway scripts (MySQL services: identity, profile)
     │       └── logback-spring.xml
     └── test/java/app/unplnd/plan/                 # mirrors main; *Test (unit), *IT (Testcontainers)
 ```
@@ -305,12 +307,15 @@ Service responsibilities:
 | Service | Feature packages | Owns | Produces | Consumes |
 |---|---|---|---|---|
 | api-gateway | `route`, `filter` (JWT, correlation id, rate limit) | routing, CORS | – | – |
-| user-service | `auth`, `user`, `friendship`, `preference` | MySQL: users, friendships, friend_requests, user_preferences | USER_REGISTERED, USER_UPDATED, FRIEND_REQUEST_SENT, FRIEND_REQUEST_ACCEPTED | PLAN_COMPLETED |
+| identity-service | `auth` (sign-up, sign-in with username/password, refresh, sign-out), `oauth` (Google and Facebook OAuth2 login, account linking), `token` (JWT issuing, refresh tokens) | MySQL: user accounts (credentials), oauth_accounts, refresh_tokens | USER_REGISTERED | – |
+| profile-service *(planned)* | `profile`, `friendship`, `preference` | MySQL: profiles, friendships, friend_requests, user_preferences | USER_UPDATED, FRIEND_REQUEST_SENT, FRIEND_REQUEST_ACCEPTED | USER_REGISTERED, PLAN_COMPLETED |
 | plan-service | `plan`, `itinerary`, `voting`, `invite`, `memory` | MongoDB: plans, votes, memories, outbox | PLAN_CREATED, PLAN_MEMBER_JOINED, PLAN_MEMBER_LEFT, PLAN_VOTE_CAST, PLAN_VOTE_UPDATED, PLAN_CONFIRMED, PLAN_CANCELLED, PLAN_STARTED, PLAN_COMPLETED | USER_UPDATED, PLACE_UPDATED |
 | place-service | `place`, `category`, `provider` (PlaceProvider, RoutingProvider impls) | MongoDB: places, categories; Redis cache | PLACE_UPDATED | – |
 | notification-service | `notification`, `preference`, `presence`, `websocket` | MongoDB: notifications; Redis presence | – | plan + friend events |
 
-Gateway routes: `/api/v1/users/**`, `/api/v1/plans/**`, `/api/v1/places/**`, `/api/v1/notifications/**`. WebSocket: `/ws` with destinations `/topic/plan.{planId}` and `/user/queue/...`.
+> **identity vs profile**: identity-service knows only *who you are* — credentials, linked Google/Facebook accounts, tokens — and is the only service that issues JWTs. Everything about *the person* (display name, avatar, friends, preferences) belongs to profile-service, keyed by the same `userId` (the JWT `sub`); it creates the profile when it consumes `USER_REGISTERED`.
+
+Gateway routes: `/api/v1/auth/**` → identity, `/api/v1/users/**` → profile, `/api/v1/plans/**`, `/api/v1/places/**`, `/api/v1/notifications/**`. WebSocket: `/ws` with destinations `/topic/plan.{planId}` and `/user/queue/...`.
 
 ---
 
@@ -374,6 +379,7 @@ No `DTO` suffix on DTOs.
 - **Never trust user IDs, plan IDs, roles or permissions sent by the client.** Current user comes from the validated JWT only.
 - Every endpoint checks authorization in the backend (only members vote; only creator confirms/cancels).
 - Passwords hashed with BCrypt/Argon2. Invite tokens random, unguessable, expirable.
+- Authentication lives only in identity-service: username/password plus Google and Facebook OAuth2 login. A social login maps to one user account via (`provider`, `providerUserId`); it issues the same UNPLND JWT + refresh token as a password login. Provider tokens are never forwarded to other services. OAuth client ids/secrets via env vars only.
 
 ### Kafka
 - Topics: `user-events`, `plan-events`, `place-events`, `notification-events` (+ `<topic>.DLT`). Names in `shared/constants/KafkaTopics`.
@@ -425,7 +431,7 @@ npx shadcn@latest add <component>
 npm --prefix webapp run <script>
 
 # Backend (per service)
-cd services/plan-service
+cd identity-service          # each service builds on its own
 ./gradlew bootRun --args='--spring.profiles.active=local'
 ./gradlew test               # unit
 ./gradlew integrationTest    # Testcontainers (Docker required)
@@ -439,6 +445,8 @@ cd services/plan-service
 | Term | Meaning |
 |---|---|
 | **Plan** | A group activity session created in UNPLND |
+| **Identity** | Who a user is to the system: credentials, linked Google/Facebook accounts, tokens (identity-service) |
+| **Profile** | What a user shows to others: display name, avatar, friends, preferences (profile-service) |
 | **Plan Creator** | User who creates a plan (role `CREATOR`) |
 | **Plan Member** | User participating in a plan (role `MEMBER`) |
 | **Plan Status** | Lifecycle state: DRAFT, GENERATING, OPEN, VOTING, CONFIRMED, READY_TO_GO, IN_PROGRESS, COMPLETED, CANCELLED |

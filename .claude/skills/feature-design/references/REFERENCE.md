@@ -109,7 +109,8 @@ Ask the user only the open questions that block the design. For everything else,
 
 | Change is mainly about…                               | Owning service         |
 |-------------------------------------------------------|------------------------|
-| Register, login, profile, friends, preferences        | `user-service`         |
+| Sign-up, sign-in, Google/Facebook login, tokens       | `identity-service`     |
+| Profile, friends, preferences                         | `profile-service`      |
 | Plans, members, constraints, itinerary, votes, memory | `plan-service`         |
 | Places, categories, geo search, providers, caching    | `place-service`        |
 | Notifications, WebSocket delivery, presence           | `notification-service` |

@@ -7,7 +7,7 @@
 #   init_plan.sh <feature-slug> <service> [tracks]
 #
 #   feature-slug: kebab-case, e.g. realtime-voting
-#   service:      web | api-gateway | user-service | plan-service | place-service |
+#   service:      web | api-gateway | identity-service | profile-service | plan-service | place-service |
 #                 notification-service | event-contracts | api-contracts | infrastructure
 #   tracks:       comma-separated list of: backend,frontend,events,devops  (default: backend,frontend)
 #
@@ -35,7 +35,7 @@ SLUG="${1:-}"
 SERVICE="${2:-}"
 TRACKS="${3:-backend,frontend}"
 
-VALID_SERVICES="web api-gateway user-service plan-service place-service notification-service event-contracts api-contracts infrastructure"
+VALID_SERVICES="web api-gateway identity-service profile-service plan-service place-service notification-service event-contracts api-contracts infrastructure"
 
 usage() {
   echo "Usage: $0 <feature-slug> <service> [tracks]"
@@ -391,7 +391,7 @@ EOF
 fi
 
 # ── implementation-plan.md ──────────────────────────────────────────────────
-SVC_DIR="services/${SERVICE}"
+SVC_DIR="${SERVICE}"
 {
 cat << EOF
 # Implementation Plan: ${TITLE}
@@ -524,7 +524,7 @@ cat << EOF
 
 - [ ] Notification Service pushes {EVENT} to \`/topic/plan.{planId}\` or \`/user/queue/...\`
 
-**Verification:** \`cd services/notification-service && ./gradlew build\`
+**Verification:** \`cd notification-service && ./gradlew build\`
 
 **Suggested commit message (for the user — do not run):** \`feat(notification-service): push {EVENT} over WebSocket\`
 

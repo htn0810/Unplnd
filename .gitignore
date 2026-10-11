@@ -1,3 +1,6 @@
+# Single .gitignore for the whole repo (webapp + every backend service).
+# Don't add per-project .gitignore files; patterns here apply at any depth unless they start with a project path.
+
 # ─── OS ───────────────────────────────────────────
 .DS_Store
 Thumbs.db
@@ -8,10 +11,22 @@ desktop.ini
 *.iml
 *.iws
 *.ipr
-out/
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
+**/.vscode/*
+!**/.vscode/extensions.json
+!**/.vscode/settings.json
+# Eclipse / STS (also used by the VS Code Java extension)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+# NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
 *.swp
 *.sw?
 *.suo
@@ -50,15 +65,26 @@ coverage/
 test-results/
 playwright-report/
 blob-report/
-playwright/.cache/
+**/playwright/.cache/
 # Expo / React Native (mobile/)
 .expo/
 web-build/
 
-# ─── Java / Gradle (services/*) ───────────────────
+# ─── Java / Gradle (backend services) ─────────────
 .gradle/
 build/
-!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+# IDE compiler output (VS Code Java / Eclipse: bin/, IntelliJ: out/)
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+!**/gradle/wrapper/gradle-wrapper.jar
+# Spring Initializr notes
+HELP.md
 *.class
 hs_err_pid*
 replay_pid*

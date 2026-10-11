@@ -360,7 +360,7 @@ All code, fields, API params, event fields, and TS types must use:
 - [ ] `{Entity}Repository.java` — `JpaRepository` / `MongoRepository`
 - [ ] Flyway migration `V{n}__{desc}.sql` (MySQL only)
 
-**Verification:** `cd services/{service} && ./gradlew compileJava`
+**Verification:** `cd {service} && ./gradlew compileJava`
 
 **Suggested commit message (for the user — do not run):** `feat({service}): add {Entity} entity and repository`
 
@@ -374,7 +374,7 @@ All code, fields, API params, event fields, and TS types must use:
 - [ ] `dto/response/{Entity}Response.java`
 - [ ] `{Entity}Mapper.java` (MapStruct)
 
-**Verification:** `cd services/{service} && ./gradlew compileJava`
+**Verification:** `cd {service} && ./gradlew compileJava`
 
 **Suggested commit message (for the user — do not run):** `feat({service}): add {feature} DTOs and mapper`
 
@@ -389,7 +389,7 @@ All code, fields, API params, event fields, and TS types must use:
 - [ ] Custom exceptions + `GlobalExceptionHandler` mapping
 - [ ] Unit tests `{Feature}ServiceImplTest`
 
-**Verification:** `cd services/{service} && ./gradlew test`
+**Verification:** `cd {service} && ./gradlew test`
 
 **Suggested commit message (for the user — do not run):** `feat({service}): add {feature} service`
 
@@ -403,7 +403,7 @@ All code, fields, API params, event fields, and TS types must use:
 - [ ] `{Feature}Controller.java` returning `ApiResponse<T>`
 - [ ] `@WebMvcTest` controller test
 
-**Verification:** `cd services/{service} && ./gradlew build`
+**Verification:** `cd {service} && ./gradlew build`
 
 **Suggested commit message (for the user — do not run):** `feat({service}): add {feature} REST endpoints`
 
@@ -419,7 +419,7 @@ All code, fields, API params, event fields, and TS types must use:
 - [ ] `{Event}Consumer` — idempotent, retry + DLT
 - [ ] Consumer test incl. duplicate delivery (Testcontainers Kafka)
 
-**Verification:** `cd services/{service} && ./gradlew integrationTest`
+**Verification:** `cd {service} && ./gradlew integrationTest`
 
 **Suggested commit message (for the user — do not run):** `feat({service}): publish and consume {EVENT}`
 
@@ -431,7 +431,7 @@ All code, fields, API params, event fields, and TS types must use:
 
 - [ ] Notification Service pushes `{EVENT}` to `/topic/plan.{planId}` or `/user/queue/...`
 
-**Verification:** `cd services/notification-service && ./gradlew build`
+**Verification:** `cd notification-service && ./gradlew build`
 
 **Suggested commit message (for the user — do not run):** `feat(notification-service): push {EVENT} over WebSocket`
 
