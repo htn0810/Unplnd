@@ -1,0 +1,3 @@
+rootProject.name = 'unplnd'
+
+include 'commons', 'identity-service'
