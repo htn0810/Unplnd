@@ -85,6 +85,15 @@ mappings:
       - modules/api-gateway.md
       - architecture/backend.md
 
+  - match: commons/**
+    update:
+      - architecture/backend.md
+
+  - match: settings.gradle
+    update:
+      - architecture/backend.md
+      - architecture/overview.md
+
   - match: identity-service/**
     update:
       - modules/identity-service.md
@@ -159,7 +168,7 @@ mappings:
     update:
       - architecture/kafka-events.md
 
-  - match: "*-service/**/shared/**"
+  - match: "*-service/**/configuration/**"
     update:
       - architecture/backend.md
 

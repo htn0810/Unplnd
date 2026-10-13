@@ -61,7 +61,7 @@ Work through the repository in this order. Read broadly before writing anything.
 
 - Root: `webapp/`, standalone backend services (`api-gateway/`, `*-service/`), `packages/`, `infrastructure/`, `plans/`
 - `webapp/package.json` — frontend dependencies and scripts
-- each service's `build.gradle.kts` — Spring Boot / Java versions, dependencies
+- root `settings.gradle` (included projects) and each project's `build.gradle` — Spring Boot / Java versions, dependencies, `commons` usage
 - `plans/` — existing feature plans and locked terminology
 
 ### 2. Understand the backend services
@@ -69,8 +69,8 @@ Work through the repository in this order. Read broadly before writing anything.
 For each backend service at the repo root (`api-gateway/`, `*-service/`):
 
 - `*Application.java` and `application*.properties` — profiles, datastores, Kafka config
-- feature packages — `*Controller`, `*Service` (+ `impl/`), `*Repository`, entities/documents, `dto/`
-- `shared/` — `ApiConstants`, `ApiResponse`, `GlobalExceptionHandler`, security, event envelope, outbox
+- layer packages — `controller/`, `service/`, `repository/`, `entity/`, `dto/`, `mapper/`, `configuration/`, `validator/`
+- `commons/` — `ApiResponse` and other cross-service building blocks; per service `configuration/`, `exception/` (`GlobalExceptionHandler`), `event/` (envelope, outbox)
 - `event/` packages — producers, consumers, topics, keys, DLT, idempotency
 - `plan-service` — `PlanStateMachine`, `PlanStatus`, voting, invites, itinerary
 - `place-service` — `PlaceProvider`, `RoutingProvider`, Redis caching
@@ -206,8 +206,8 @@ React PWA architecture. Include:
 
 Spring Boot service template. Include:
 
-- Layer diagram: Controller → Service (interface + impl) → Repository → DB
-- Feature packages vs `shared/`
+- Layer diagram: Controller → Service → Repository → DB (layer packages, concrete `@Service` classes)
+- Root Gradle multi-project and the `commons` library
 - `ApiResponse` and error handling flow
 - Security: gateway JWT validation → service authorization
 - Correlation ID propagation

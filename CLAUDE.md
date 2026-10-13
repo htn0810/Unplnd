@@ -63,17 +63,17 @@ VOTING | CONFIRMED | READY_TO_GO → CANCELLED
 | Concern | Choice |
 |---|---|
 | Language | Java 21 |
-| Framework | Spring Boot 3.x |
-| Build | Gradle (Kotlin DSL), one build per service |
+| Framework | Spring Boot 4.x (Spring Framework 7) |
+| Build | Gradle (Groovy DSL) multi-project: root `settings.gradle` includes `commons` + every service; one root wrapper (`./gradlew`) |
 | Gateway | Spring Cloud Gateway |
-| Security | Spring Security, JWT; Spring Security OAuth2 Client (Google, Facebook login) in identity-service |
+| Security | Spring Security, JWT; Spring Security OAuth2 Client (Google, Facebook login) in identity-service; Argon2 password hashing (BouncyCastle) |
 | Identity / Profile DB | MySQL 8 + Spring Data JPA + Flyway |
 | Plan / Place / Notification DB | MongoDB + Spring Data MongoDB |
 | Cache / presence / rate limit | Redis |
 | Messaging | Apache Kafka (KRaft) + Spring Kafka |
 | Real-time | Spring WebSocket + STOMP (Notification Service) |
 | Mapping | MapStruct |
-| Boilerplate | Lombok (`@RequiredArgsConstructor`, `@Builder`, `@Slf4j`) |
+| Boilerplate | Lombok (`@RequiredArgsConstructor`, `@Builder`, `@FieldDefaults`, `@Slf4j`) |
 | Validation | Jakarta Bean Validation |
 | Resilience | Resilience4j |
 | API docs | springdoc-openapi |
@@ -93,7 +93,10 @@ Docker Compose for local dev (`infrastructure/docker/docker-compose.yml`): web, 
 unplnd/
 ├── webapp/                     # React PWA (Vite)
 ├── mobile/                     # Future: React Native + Expo
-├── api-gateway/                # Each backend service is a standalone project at the repo root
+├── settings.gradle             # Gradle multi-project: include 'commons', '<name>-service', ...
+├── gradlew, gradle/            # the only Gradle wrapper — run every backend task from the repo root
+├── commons/                    # Shared Java library (java-library): ApiResponse, shared exceptions/utils
+├── api-gateway/                # Each backend service is its own Spring Boot app at the repo root
 ├── identity-service/           # MySQL — authentication (username/password, Google, Facebook)
 ├── profile-service/            # MySQL — user information (planned)
 ├── plan-service/               # MongoDB
@@ -234,7 +237,7 @@ When a feature grows past ~10 files, group into `components/`, `hooks/` sub-fold
 ### API & real-time
 - Until the backend exists, data comes from mock JSON in `webapp/public/resources/mock-data/`, loaded via `getMock()` in `services/apiClient.ts` and consumed through the same feature service + TanStack Query hooks the real API will use. Links/actions without a backing page stay `href="#"`.
 - All HTTP goes through `services/apiClient.ts` → API Gateway (`/api/v1/...`). Components never call `fetch` directly; they use feature query hooks, which call the feature service.
-- API responses arrive wrapped in `ApiResponse<T>` (`success`, `message`, `data`, `timestamp`); `apiClient` unwraps `data` and throws a typed error when `success === false`.
+- API responses arrive wrapped in `ApiResponse<T>` (`message`, `result`); `apiClient` unwraps `result` and throws a typed error (with `message`) on a non-2xx status.
 - Validate forms with zod (`react-hook-form` + shadcn `Form`); derive types with `z.infer`. Reuse types from `packages/api-contracts` / `event-contracts` where available.
 - WebSocket messages are **signals to refresh**, not a second source of truth: on an event, invalidate/patch the matching query cache. No request/response over WebSocket.
 - The frontend never decides authorization or plan state transitions; it reflects server-provided state.
@@ -250,64 +253,53 @@ When a feature grows past ~10 files, group into `components/`, `hooks/` sub-fold
 
 ## 6. Backend Module Layout (`<name>-service/`)
 
-Follows [Spring Boot Project Structure: Best Practices Used in Production](https://dev.to/kamlesh_patil/spring-boot-project-structure-best-practices-used-in-production-4h85) — **feature-based packages** with a `shared` package, controller → service (interface + impl) → repository layering.
+Every backend service is its own Spring Boot application and deployable, living at the repo root and registered in the root `settings.gradle`. **Layer-based packages** (one package per technical layer), controller → service → repository.
 
-Each service is a standalone Spring Boot project at the repo root (no shared parent build, no `services/` folder) with its own Gradle wrapper, Dockerfile, and database. Base package: `app.unplnd.<service>` (e.g. `app.unplnd.plan`).
+- Group `com.htn`, base package `com.htn.unplnd` in every service; the main class is named after the service (`IdentityService`, `PlanService`, …).
+- `commons/` is a plain `java-library` (no Spring Boot plugin) in package `com.htn.unplnd.commons`. Services depend on it with `implementation project(':commons')`. Put only cross-service building blocks there (response wrapper, base exceptions, small utils) — never entities, repositories or business logic.
+- New service: generate with Spring Initializr (Gradle - Groovy, Java 21), then delete its `gradlew*`, `gradle/`, `settings.gradle` and `.gitignore`, and add it to the root `settings.gradle`.
 
 ```text
-plan-service/
-├── build.gradle.kts
+identity-service/
+├── build.gradle                          # Groovy DSL; implementation project(':commons')
 ├── Dockerfile
 └── src/
     ├── main/
-    │   ├── java/app/unplnd/plan/
-    │   │   ├── PlanServiceApplication.java
-    │   │   ├── plan/                              # feature package
-    │   │   │   ├── PlanController.java
-    │   │   │   ├── PlanService.java               # interface
-    │   │   │   ├── impl/
-    │   │   │   │   └── PlanServiceImpl.java
-    │   │   │   ├── PlanRepository.java
-    │   │   │   ├── Plan.java                      # entity / Mongo document
-    │   │   │   ├── PlanStatus.java                # enum
-    │   │   │   ├── PlanStateMachine.java          # allowed lifecycle transitions
-    │   │   │   ├── PlanMapper.java                # MapStruct entity ↔ DTO
-    │   │   │   ├── dto/
-    │   │   │   │   ├── request/                   # CreatePlanRequest, UpdateConstraintsRequest
-    │   │   │   │   └── response/                  # PlanResponse, PlanSummaryResponse
-    │   │   │   └── event/                         # Kafka: PlanEventProducer, *Consumer, payload records
-    │   │   ├── voting/                            # same shape: VoteController, VoteService, impl/, ...
-    │   │   ├── invite/
-    │   │   ├── itinerary/
-    │   │   ├── memory/
-    │   │   └── shared/
-    │   │       ├── config/                        # SecurityConfig, KafkaConfig, MongoConfig, OpenApiConfig
-    │   │       ├── constants/                     # ApiConstants (paths), KafkaTopics, EventTypes
-    │   │       ├── exception/                     # GlobalExceptionHandler, ResourceNotFoundException, InvalidStateTransitionException, ...
-    │   │       ├── response/                      # ApiResponse<T>, PageResponse<T>
-    │   │       ├── aspect/                        # LoggingAspect, PerformanceAspect
-    │   │       ├── event/                         # EventEnvelope, outbox, processed-event (idempotency) store
-    │   │       ├── security/                      # JwtService, CurrentUser resolver
-    │   │       └── util/
+    │   ├── java/com/htn/unplnd/
+    │   │   ├── IdentityService.java      # @SpringBootApplication
+    │   │   ├── configuration/            # SecurityConfig (filter chain, PasswordEncoder), KafkaConfig, OpenApiConfig
+    │   │   ├── controller/               # AuthenticationController
+    │   │   ├── service/                  # AuthenticationService — @Service classes, no interface
+    │   │   ├── repository/               # AccountRepository (JpaRepository / MongoRepository)
+    │   │   ├── entity/                   # Account — JPA entities / Mongo documents
+    │   │   ├── dto/
+    │   │   │   ├── request/              # SignUpRequest
+    │   │   │   └── response/             # AccountResponse
+    │   │   ├── mapper/                   # MapStruct: AccountMapper
+    │   │   ├── validator/                # custom Bean Validation constraints (@ValidateFieldMatch + @FieldMatch)
+    │   │   ├── exception/                # GlobalExceptionHandler, ErrorCode, AppException
+    │   │   ├── constants/                # KafkaTopics, EventTypes
+    │   │   └── event/                    # Kafka producers / consumers, payload records, outbox, processed-event store
     │   └── resources/
     │       ├── application.properties
-    │       ├── application-local.properties
-    │       ├── application-dev.properties
-    │       ├── application-prod.properties
-    │       ├── application-test.properties
-    │       ├── db/migration/                      # Flyway scripts (MySQL services: identity, profile)
+    │       ├── application-{local,dev,prod,test}.properties
+    │       ├── db/migration/             # Flyway scripts (MySQL services: identity, profile)
     │       └── logback-spring.xml
-    └── test/java/app/unplnd/plan/                 # mirrors main; *Test (unit), *IT (Testcontainers)
+    └── test/java/com/htn/unplnd/         # mirrors main; *Test (unit), *IT (Testcontainers)
+
+commons/
+├── build.gradle                          # java-library
+└── src/main/java/com/htn/unplnd/commons/ # ApiResponse<T>
 ```
 
-> The `event/` sub-package per feature and `shared/event`, `shared/security` extend the article's structure for Kafka and JWT needs.
+Each service's HTTP API sits under its own context path (`server.servlet.context-path=/identity`), with controllers mapped by resource (`/auth/sign-up`). The gateway maps public `/api/v1/...` paths onto them.
 
 Service responsibilities:
 
-| Service | Feature packages | Owns | Produces | Consumes |
+| Service | Responsibilities | Owns | Produces | Consumes |
 |---|---|---|---|---|
 | api-gateway | `route`, `filter` (JWT, correlation id, rate limit) | routing, CORS | – | – |
-| identity-service | `auth` (sign-up, sign-in with username/password, refresh, sign-out), `oauth` (Google and Facebook OAuth2 login, account linking), `token` (JWT issuing, refresh tokens) | MySQL: user accounts (credentials), oauth_accounts, refresh_tokens | USER_REGISTERED | – |
+| identity-service | sign-up, sign-in with email/password, refresh, sign-out; Google and Facebook OAuth2 login + account linking; JWT issuing, refresh tokens | MySQL: `accounts` (email, password hash), oauth_accounts, refresh_tokens | USER_REGISTERED | – |
 | profile-service *(planned)* | `profile`, `friendship`, `preference` | MySQL: profiles, friendships, friend_requests, user_preferences | USER_UPDATED, FRIEND_REQUEST_SENT, FRIEND_REQUEST_ACCEPTED | USER_REGISTERED, PLAN_COMPLETED |
 | plan-service | `plan`, `itinerary`, `voting`, `invite`, `memory` | MongoDB: plans, votes, memories, outbox | PLAN_CREATED, PLAN_MEMBER_JOINED, PLAN_MEMBER_LEFT, PLAN_VOTE_CAST, PLAN_VOTE_UPDATED, PLAN_CONFIRMED, PLAN_CANCELLED, PLAN_STARTED, PLAN_COMPLETED | USER_UPDATED, PLACE_UPDATED |
 | place-service | `place`, `category`, `provider` (PlaceProvider, RoutingProvider impls) | MongoDB: places, categories; Redis cache | PLACE_UPDATED | – |
@@ -315,7 +307,7 @@ Service responsibilities:
 
 > **identity vs profile**: identity-service knows only *who you are* — credentials, linked Google/Facebook accounts, tokens — and is the only service that issues JWTs. Everything about *the person* (display name, avatar, friends, preferences) belongs to profile-service, keyed by the same `userId` (the JWT `sub`); it creates the profile when it consumes `USER_REGISTERED`.
 
-Gateway routes: `/api/v1/auth/**` → identity, `/api/v1/users/**` → profile, `/api/v1/plans/**`, `/api/v1/places/**`, `/api/v1/notifications/**`. WebSocket: `/ws` with destinations `/topic/plan.{planId}` and `/user/queue/...`.
+Gateway routes: `/api/v1/auth/**` → identity (`/identity/auth/**`), `/api/v1/users/**` → profile, `/api/v1/plans/**`, `/api/v1/places/**`, `/api/v1/notifications/**`. WebSocket: `/ws` with destinations `/topic/plan.{planId}` and `/user/queue/...`.
 
 ---
 
@@ -325,51 +317,54 @@ Gateway routes: `/api/v1/auth/**` → identity, `/api/v1/users/**` → profile, 
 
 | Type | Pattern | Example |
 |---|---|---|
-| Controller | `[Entity]Controller` | `PlanController` |
-| Service interface | `[Entity]Service` | `PlanService` |
-| Service impl | `[Entity]ServiceImpl` in `impl/` | `PlanServiceImpl` |
+| Application class | `[Name]Service` | `IdentityService` |
+| Controller | `[Feature]Controller` | `AuthenticationController`, `PlanController` |
+| Service | `[Feature]Service` (concrete `@Service` class) | `AuthenticationService` |
 | Repository | `[Entity]Repository` | `PlanRepository` |
-| Entity / document | `[Entity]` | `Plan`, `User` |
-| Request DTO | `[Action][Entity]Request` | `CreatePlanRequest`, `CastVoteRequest` |
-| Response DTO | `[Entity]Response` | `PlanResponse` |
-| Mapper | `[Entity]Mapper` | `PlanMapper` |
+| Entity / document | `[Entity]` | `Account`, `Plan` |
+| Request DTO | `[Action][Entity]Request` | `SignUpRequest`, `CreatePlanRequest` |
+| Response DTO | `[Entity]Response` | `AccountResponse`, `PlanResponse` |
+| Mapper | `[Entity]Mapper` | `AccountMapper` |
+| Config | `[Concern]Config` in `configuration/` | `SecurityConfig` |
+| Validation constraint | annotation + `[Annotation]Validator` in `validator/` | `@ValidateFieldMatch`, `FieldMatchValidator` |
 | Exception | `[Scenario]Exception` | `ResourceNotFoundException`, `InvalidStateTransitionException` |
-| Constants | `[Topic]Constants` / `ApiConstants` | `ApiConstants`, `KafkaTopics` |
+| Constants | `[Topic]Constants` | `KafkaTopics`, `EventTypes` |
 | Aspect | `[Concern]Aspect` | `LoggingAspect` |
 | Kafka producer / consumer | `[Entity]EventProducer` / `[Event]Consumer` | `PlanEventProducer`, `PlanCompletedConsumer` |
 
-No `DTO` suffix on DTOs.
+No `DTO` suffix on DTOs. Lombok style: `@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)` + `@RequiredArgsConstructor` for beans; `@FieldDefaults(level = AccessLevel.PRIVATE)` + `@Data`/`@Builder` for DTOs.
 
 ### Layers
-- **Controller** — thin: `@Valid` request DTO, call one service method, return `ResponseEntity<ApiResponse<T>>`. No business logic, never touches repositories. Paths come from `ApiConstants`, not hard-coded strings. Injects service **interfaces** only.
-- **Service** — every service has an interface + `impl/ServiceImpl`, even with one implementation. All business logic and `@Transactional` boundaries live here. No HTTP concerns (`HttpServletRequest`, `ResponseEntity`). Throws custom exceptions.
+- **Controller** — thin: `@Valid @RequestBody` request DTO, call one service method, return `ApiResponse<T>` built with `ApiResponse.<T>builder()` (use `@ResponseStatus` when the status isn't 200, e.g. 201 on create). No business logic, never touches repositories.
+- **Service** — concrete `@Service` classes (no interface/impl split). All business logic and `@Transactional` boundaries live here. No HTTP concerns (`HttpServletRequest`, `ResponseEntity`). Throws custom exceptions.
 - **Repository** — `JpaRepository<E, ID>` (MySQL) / `MongoRepository<E, ID>` (MongoDB). Derived queries or `@Query`; `Optional<T>` for single results; `Pageable` for lists. No raw JDBC; custom query logic stays in repositories, not services.
 - **Entity** — persistent fields only, JPA/Mongo annotations, audit fields (`createdAt`, `updatedAt`). No business logic. Never returned from controllers or used as DTOs.
 - **DTO** — separate `request/` and `response/`. Request DTOs carry Bean Validation (`@NotBlank`, `@Positive`, …); response DTOs expose only what the client needs. One DTO per purpose. Use Java `record` (or Lombok `@Builder` for responses with many optional fields).
-- **Mapper** — MapStruct, entity ↔ DTO only; no business logic.
+- **Mapper** — MapStruct (`@Mapper(componentModel = "spring")`), entity ↔ DTO only; no business logic. Derived values (e.g. password hash) are set in the service.
+- **Validator** — cross-field rules as custom constraints in `validator/` (e.g. class-level `@ValidateFieldMatch` + field `@FieldMatch(field = "password")` for confirm-password).
 - **Aspect** — cross-cutting only (logging, performance > 500 ms warning, auditing), pointcuts on service packages. No business logic.
 
-### Cross-feature
-- **Feature packages never import each other directly.** If `voting` needs plan data, depend on `PlanService` interface (never `PlanRepository` or `PlanServiceImpl`). Shared code goes only in `shared/`.
+### Dependencies inside a service
+- Dependencies point one way: controller → service → repository / mapper. A service needing another aggregate's data calls that aggregate's service, not its repository.
 - No circular dependencies. Constructor injection only (`@RequiredArgsConstructor`), no field `@Autowired`.
 
 ### Architecture
 - **Database-per-service.** A service never touches another service's database. Cross-service data via REST (immediate answer needed) or Kafka (async side effects).
 - **Redis is not a source of truth. Kafka is not a database.**
 - External providers (OSM, Overpass, OSRM, future AI) always behind interfaces: `PlaceProvider`, `RoutingProvider`, `MapProvider`, `RecommendationEngine`. Business logic never depends on a concrete provider.
-- Services stay independently deployable — share only contracts (`packages/event-contracts`, `api-contracts`), never business code.
+- Services stay independently deployable — share only contracts (`packages/event-contracts`, `api-contracts`) and the `commons` library, never business code.
 
 ### Domain rules
-- Plan lifecycle is enforced by `PlanStateMachine`, called from `PlanServiceImpl`. Illegal transitions throw `InvalidStateTransitionException` → HTTP 409. Never set `status` directly from a request body.
+- Plan lifecycle is enforced by `PlanStateMachine`, called from the plan service. Illegal transitions throw `InvalidStateTransitionException` → HTTP 409. Never set `status` directly from a request body.
 - Cancellation only from VOTING, CONFIRMED, READY_TO_GO.
 - Money as `long` (VND) or `BigDecimal`, never `double`. Durations in minutes, distances in meters.
 - Store times as UTC `Instant`; convert at the edges.
 
 ### API responses & errors
-- Every endpoint returns `ApiResponse<T>` (`success`, `message`, `data`, `timestamp`) via `ApiResponse.success(data)` / `ApiResponse.error(message)`. Lists use `PageResponse<T>` inside `data`.
-- `GlobalExceptionHandler` (`@RestControllerAdvice`) maps exceptions → `ApiResponse.error(...)` with correct status: `ResourceNotFoundException` 404, `MethodArgumentNotValidException` 400 (with field errors), auth 401/403, `InvalidStateTransitionException` 409.
+- Every endpoint returns `ApiResponse<T>` from `commons` (`message`, `result`). Lists use `PageResponse<T>` inside `result`. Success/failure is the HTTP status code.
+- `GlobalExceptionHandler` (`@RestControllerAdvice`) maps exceptions → `ApiResponse` with the error `message` (no `result`) and the correct status: `ResourceNotFoundException` 404, `MethodArgumentNotValidException` 400 (with field errors), auth 401/403, `InvalidStateTransitionException` 409.
 - Custom exceptions extend `RuntimeException` with meaningful messages.
-- REST: versioned `/api/v1/...`, plural nouns (`/plans/{planId}/members`), 201 on create, paginated lists. Document with springdoc-openapi; keep `packages/api-contracts` in sync.
+- REST (public, via gateway): versioned `/api/v1/...`, plural nouns (`/plans/{planId}/members`), 201 on create, paginated lists. Document with springdoc-openapi; keep `packages/api-contracts` in sync.
 
 ### Configuration
 - `application.properties` base + `application-{local,dev,prod,test}.properties` profiles.
@@ -378,12 +373,12 @@ No `DTO` suffix on DTOs.
 ### Security
 - **Never trust user IDs, plan IDs, roles or permissions sent by the client.** Current user comes from the validated JWT only.
 - Every endpoint checks authorization in the backend (only members vote; only creator confirms/cancels).
-- Passwords hashed with BCrypt/Argon2. Invite tokens random, unguessable, expirable.
+- Passwords hashed with Argon2 via `DelegatingPasswordEncoder` (Argon2 default, BCrypt still verifiable); hashes are stored with their `{id}` prefix. Never return the hash. Invite tokens random, unguessable, expirable.
 - Authentication lives only in identity-service: username/password plus Google and Facebook OAuth2 login. A social login maps to one user account via (`provider`, `providerUserId`); it issues the same UNPLND JWT + refresh token as a password login. Provider tokens are never forwarded to other services. OAuth client ids/secrets via env vars only.
 
 ### Kafka
-- Topics: `user-events`, `plan-events`, `place-events`, `notification-events` (+ `<topic>.DLT`). Names in `shared/constants/KafkaTopics`.
-- Standard envelope (`shared/event/EventEnvelope`): `eventId`, `eventType`, `occurredAt`, `producer`, `version`, `payload`. Schemas in `packages/event-contracts`.
+- Topics: `user-events`, `plan-events`, `place-events`, `notification-events` (+ `<topic>.DLT`). Names in `constants/KafkaTopics`.
+- Standard envelope (`EventEnvelope`, shared via `commons`): `eventId`, `eventType`, `occurredAt`, `producer`, `version`, `payload`. Schemas in `packages/event-contracts`.
 - Key: `planId` for plan events, `userId` for user events — preserves per-aggregate ordering.
 - Events are past-tense facts (`PLAN_CONFIRMED`), immutable; breaking change → bump `version`.
 - At-least-once delivery: every consumer idempotent (processed `eventId` store).
@@ -401,7 +396,7 @@ No `DTO` suffix on DTOs.
 - Actuator health/metrics; Micrometer metrics for plan generation time, consumer lag, WebSocket connections.
 
 ### Testing
-- Unit tests for every `*ServiceImpl` and `PlanStateMachine` (JUnit 5, Mockito, AssertJ) — state machine fully covered.
+- Unit tests for every `*Service` and `PlanStateMachine` (JUnit 5, Mockito, AssertJ) — state machine fully covered.
 - `@WebMvcTest` for controllers, `@DataJpaTest` / `@DataMongoTest` for repositories.
 - Integration tests (`*IT`) with Testcontainers for MySQL, MongoDB, Kafka, Redis. No H2 / embedded fakes.
 - Consumer tests for each Kafka listener, including duplicate delivery.
@@ -410,8 +405,6 @@ No `DTO` suffix on DTOs.
 ---
 
 ## 8. Common Commands
-
-> Update this section once the scaffolding exists.
 
 ```bash
 # Infrastructure
@@ -430,12 +423,12 @@ npx shadcn@latest add <component>
 # or from repo root
 npm --prefix webapp run <script>
 
-# Backend (per service)
-cd identity-service          # each service builds on its own
-./gradlew bootRun --args='--spring.profiles.active=local'
-./gradlew test               # unit
-./gradlew integrationTest    # Testcontainers (Docker required)
-./gradlew build
+# Backend (always from the repo root — one wrapper for all projects)
+./gradlew build                                   # commons + every service
+./gradlew :identity-service:build
+./gradlew :identity-service:bootRun --args='--spring.profiles.active=local'
+./gradlew :identity-service:test                  # unit
+./gradlew :identity-service:integrationTest       # Testcontainers (Docker required; task to be added)
 ```
 
 ---

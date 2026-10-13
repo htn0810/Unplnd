@@ -146,8 +146,8 @@ If the idea evolves during implementation, update **Scope** and **Design Decisio
 Use these baseline checks when applicable:
 
 ```bash
-# Backend (per service)
-cd {service} && ./gradlew build --console=plain
+# Backend (from the repo root — single Gradle wrapper)
+./gradlew :{service}:build --console=plain
 
 # Frontend (from repo root)
 npm --prefix webapp run typecheck && npm --prefix webapp run lint && npm --prefix webapp run test

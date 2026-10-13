@@ -1,0 +1,28 @@
+package com.htn.unplnd.service;
+
+import com.htn.unplnd.dto.request.SignUpRequest;
+import com.htn.unplnd.entity.Account;
+import com.htn.unplnd.mapper.AccountMapper;
+import com.htn.unplnd.repository.AccountRepository;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+public class AuthenticationService {
+	AccountRepository accountRepository;
+	PasswordEncoder passwordEncoder;
+	AccountMapper accountMapper;
+
+	public Account createNewAccount(SignUpRequest request) {
+		Account account = accountMapper.toAccount(request);
+		var passwordHash = passwordEncoder.encode(request.getPassword());
+		account.setPasswordHash(passwordHash);
+
+		return accountRepository.save(account);
+	}
+}

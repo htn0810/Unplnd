@@ -448,7 +448,7 @@ cat << EOF
 - [ ] \`{Entity}Repository.java\`
 - [ ] Flyway migration (MySQL only)
 
-**Verification:** \`cd ${SVC_DIR} && ./gradlew compileJava\`
+**Verification:** \`./gradlew :${SVC_DIR}:compileJava\`
 
 **Suggested commit message (for the user — do not run):** \`feat(${SERVICE}): add {Entity} entity and repository\`
 
@@ -462,7 +462,7 @@ cat << EOF
 - [ ] \`dto/response/{Entity}Response.java\`
 - [ ] \`{Entity}Mapper.java\`
 
-**Verification:** \`cd ${SVC_DIR} && ./gradlew compileJava\`
+**Verification:** \`./gradlew :${SVC_DIR}:compileJava\`
 
 **Suggested commit message (for the user — do not run):** \`feat(${SERVICE}): add ${SLUG} DTOs and mapper\`
 
@@ -472,12 +472,11 @@ cat << EOF
 
 **Deliverables:**
 
-- [ ] \`{Feature}Service.java\` interface
-- [ ] \`impl/{Feature}ServiceImpl.java\` — business rules, authorization, lifecycle checks
+- [ ] \`service/{Feature}Service.java\` (\`@Service\` class) — business rules, authorization, lifecycle checks
 - [ ] Custom exceptions + \`GlobalExceptionHandler\` mapping
 - [ ] Unit tests
 
-**Verification:** \`cd ${SVC_DIR} && ./gradlew test\`
+**Verification:** \`./gradlew :${SVC_DIR}:test\`
 
 **Suggested commit message (for the user — do not run):** \`feat(${SERVICE}): add ${SLUG} service\`
 
@@ -491,7 +490,7 @@ cat << EOF
 - [ ] \`{Feature}Controller.java\` returning \`ApiResponse<T>\`
 - [ ] \`@WebMvcTest\` controller test
 
-**Verification:** \`cd ${SVC_DIR} && ./gradlew build\`
+**Verification:** \`./gradlew :${SVC_DIR}:build\`
 
 **Suggested commit message (for the user — do not run):** \`feat(${SERVICE}): add ${SLUG} REST endpoints\`
 
@@ -512,7 +511,7 @@ cat << EOF
 - [ ] \`{Event}Consumer\` — idempotent, retry + DLT
 - [ ] Consumer test incl. duplicate delivery
 
-**Verification:** \`cd ${SVC_DIR} && ./gradlew integrationTest\`
+**Verification:** \`./gradlew :${SVC_DIR}:integrationTest\`
 
 **Suggested commit message (for the user — do not run):** \`feat(${SERVICE}): publish and consume {EVENT}\`
 
@@ -524,7 +523,7 @@ cat << EOF
 
 - [ ] Notification Service pushes {EVENT} to \`/topic/plan.{planId}\` or \`/user/queue/...\`
 
-**Verification:** \`cd notification-service && ./gradlew build\`
+**Verification:** \`./gradlew :notification-service:build\`
 
 **Suggested commit message (for the user — do not run):** \`feat(notification-service): push {EVENT} over WebSocket\`
 
