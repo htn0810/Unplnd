@@ -1,6 +1,6 @@
-package com.htn.unplnd.repository;
+package com.htn.unplnd.identity.repository;
 
-import com.htn.unplnd.entity.Account;
+import com.htn.unplnd.identity.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

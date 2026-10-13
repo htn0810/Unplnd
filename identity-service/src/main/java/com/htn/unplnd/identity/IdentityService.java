@@ -1,4 +1,4 @@
-package com.htn.unplnd;
+package com.htn.unplnd.identity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

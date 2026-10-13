@@ -1,4 +1,4 @@
-package com.htn.unplnd.entity;
+package com.htn.unplnd.identity.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

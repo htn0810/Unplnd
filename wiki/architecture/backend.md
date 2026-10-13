@@ -18,7 +18,7 @@ unplnd/
 
 ## Service template
 
-Layer packages under `com.htn.unplnd`:
+Layer packages under the service base package `com.htn.unplnd.<service>` (identity-service → `com.htn.unplnd.identity`):
 
 ```text
 HTTP ─► controller/ ─► service/ ─► repository/ ─► DB

@@ -1,9 +1,9 @@
-package com.htn.unplnd.service;
+package com.htn.unplnd.identity.service;
 
-import com.htn.unplnd.dto.request.SignUpRequest;
-import com.htn.unplnd.entity.Account;
-import com.htn.unplnd.mapper.AccountMapper;
-import com.htn.unplnd.repository.AccountRepository;
+import com.htn.unplnd.identity.dto.request.SignUpRequest;
+import com.htn.unplnd.identity.entity.Account;
+import com.htn.unplnd.identity.mapper.AccountMapper;
+import com.htn.unplnd.identity.repository.AccountRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

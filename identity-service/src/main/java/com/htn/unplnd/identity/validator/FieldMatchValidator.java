@@ -1,4 +1,4 @@
-package com.htn.unplnd.validator;
+package com.htn.unplnd.identity.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class FieldMatchValidator implements ConstraintValidator<ValidateFieldMatch, Object> {
+public class FieldMatchValidator implements ConstraintValidator<com.htn.unplnd.identity.validator.ValidateFieldMatch, Object> {
 
 	// Cache danh sách field có @FieldMatch theo class, tránh reflection lặp lại mỗi request
 	private static final Map<Class<?>, List<Field>> CACHE = new ConcurrentHashMap<>();
@@ -23,7 +23,7 @@ public class FieldMatchValidator implements ConstraintValidator<ValidateFieldMat
 		context.disableDefaultConstraintViolation();
 
 		for (Field annotated : annotatedFields(target.getClass())) {
-			FieldMatch rule = annotated.getAnnotation(FieldMatch.class);
+			com.htn.unplnd.identity.validator.FieldMatch rule = annotated.getAnnotation(com.htn.unplnd.identity.validator.FieldMatch.class);
 			Object value = read(annotated, target);
 			Object other = read(findField(target.getClass(), rule.field()), target);
 
@@ -44,7 +44,7 @@ public class FieldMatchValidator implements ConstraintValidator<ValidateFieldMat
 			List<Field> result = new ArrayList<>();
 			for (Class<?> k = c; k != null && k != Object.class; k = k.getSuperclass()) {
 				for (Field f : k.getDeclaredFields()) {
-					if (f.isAnnotationPresent(FieldMatch.class)) {
+					if (f.isAnnotationPresent(com.htn.unplnd.identity.validator.FieldMatch.class)) {
 						f.setAccessible(true);
 						result.add(f);
 					}

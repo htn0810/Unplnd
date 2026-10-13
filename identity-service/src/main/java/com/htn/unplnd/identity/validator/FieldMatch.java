@@ -1,4 +1,4 @@
-package com.htn.unplnd.validator;
+package com.htn.unplnd.identity.validator;
 
 import java.lang.annotation.*;
 

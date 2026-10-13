@@ -1,7 +1,7 @@
-package com.htn.unplnd.dto.request;
+package com.htn.unplnd.identity.dto.request;
 
-import com.htn.unplnd.validator.FieldMatch;
-import com.htn.unplnd.validator.ValidateFieldMatch;
+import com.htn.unplnd.identity.validator.FieldMatch;
+import com.htn.unplnd.identity.validator.ValidateFieldMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

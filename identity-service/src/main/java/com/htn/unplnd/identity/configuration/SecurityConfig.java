@@ -1,4 +1,4 @@
-package com.htn.unplnd.configuration;
+package com.htn.unplnd.identity.configuration;
 
 
 import org.springframework.context.annotation.Bean;

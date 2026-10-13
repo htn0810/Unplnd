@@ -1,10 +1,10 @@
-package com.htn.unplnd;
+package com.htn.unplnd.identity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UnplndApplicationTests {
+class IdentityServiceTests {
 
 	@Test
 	void contextLoads() {

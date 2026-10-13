@@ -1,9 +1,9 @@
-package com.htn.unplnd.controller;
+package com.htn.unplnd.identity.controller;
 
 import com.htn.unplnd.commons.ApiResponse;
-import com.htn.unplnd.dto.request.SignUpRequest;
-import com.htn.unplnd.entity.Account;
-import com.htn.unplnd.service.AuthenticationService;
+import com.htn.unplnd.identity.dto.request.SignUpRequest;
+import com.htn.unplnd.identity.entity.Account;
+import com.htn.unplnd.identity.service.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

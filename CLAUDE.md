@@ -255,7 +255,7 @@ When a feature grows past ~10 files, group into `components/`, `hooks/` sub-fold
 
 Every backend service is its own Spring Boot application and deployable, living at the repo root and registered in the root `settings.gradle`. **Layer-based packages** (one package per technical layer), controller → service → repository.
 
-- Group `com.htn`, base package `com.htn.unplnd` in every service; the main class is named after the service (`IdentityService`, `PlanService`, …).
+- Group `com.htn`; each service has its own base package `com.htn.unplnd.<service>` — the service name without `-service` (`com.htn.unplnd.identity`, `.profile`, `.plan`, `.place`, `.notification`; Java packages cannot contain `-`). The main class is named after the service (`IdentityService`, `PlanService`, …) and sits in that base package.
 - `commons/` is a plain `java-library` (no Spring Boot plugin) in package `com.htn.unplnd.commons`. Services depend on it with `implementation project(':commons')`. Put only cross-service building blocks there (response wrapper, base exceptions, small utils) — never entities, repositories or business logic.
 - New service: generate with Spring Initializr (Gradle - Groovy, Java 21), then delete its `gradlew*`, `gradle/`, `settings.gradle` and `.gitignore`, and add it to the root `settings.gradle`.
 
@@ -265,7 +265,7 @@ identity-service/
 ├── Dockerfile
 └── src/
     ├── main/
-    │   ├── java/com/htn/unplnd/
+    │   ├── java/com/htn/unplnd/identity/
     │   │   ├── IdentityService.java      # @SpringBootApplication
     │   │   ├── configuration/            # SecurityConfig (filter chain, PasswordEncoder), KafkaConfig, OpenApiConfig
     │   │   ├── controller/               # AuthenticationController
@@ -285,7 +285,7 @@ identity-service/
     │       ├── application-{local,dev,prod,test}.properties
     │       ├── db/migration/             # Flyway scripts (MySQL services: identity, profile)
     │       └── logback-spring.xml
-    └── test/java/com/htn/unplnd/         # mirrors main; *Test (unit), *IT (Testcontainers)
+    └── test/java/com/htn/unplnd/identity/ # mirrors main; *Test (unit), *IT (Testcontainers)
 
 commons/
 ├── build.gradle                          # java-library
