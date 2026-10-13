@@ -1,7 +1,9 @@
 package com.htn.unplnd.identity.service;
 
+import com.htn.unplnd.commons.exception.AppException;
 import com.htn.unplnd.identity.dto.request.SignUpRequest;
 import com.htn.unplnd.identity.entity.Account;
+import com.htn.unplnd.identity.exception.IdentityException;
 import com.htn.unplnd.identity.mapper.AccountMapper;
 import com.htn.unplnd.identity.repository.AccountRepository;
 import lombok.AccessLevel;
@@ -19,6 +21,10 @@ public class AuthenticationService {
 	AccountMapper accountMapper;
 
 	public Account createNewAccount(SignUpRequest request) {
+		if (accountRepository.existsAccountByEmail(request.getEmail())) {
+			throw new AppException(IdentityException.EMAIL_ALREADY_EXISTS);
+		}
+
 		Account account = accountMapper.toAccount(request);
 		var passwordHash = passwordEncoder.encode(request.getPassword());
 		account.setPasswordHash(passwordHash);

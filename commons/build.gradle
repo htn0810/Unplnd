@@ -12,6 +12,11 @@ java {
 }
 
 dependencies {
+    compileOnly platform('org.springframework.boot:spring-boot-dependencies:4.1.1')
+    compileOnly 'org.springframework.boot:spring-boot-autoconfigure'
+    compileOnly 'org.springframework:spring-web'
+    compileOnly 'org.slf4j:slf4j-api'
+
     compileOnly 'org.projectlombok:lombok:1.18.46'
     annotationProcessor 'org.projectlombok:lombok:1.18.46'
 

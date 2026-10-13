@@ -16,7 +16,7 @@ import lombok.experimental.FieldDefaults;
 @ValidateFieldMatch
 public class SignUpRequest {
 	@NotBlank(message = "Email should not empty.")
-	@Email(message = "Not correct format.")
+	@Email(message = "Email is not correct format.")
 	String email;
 
 	@NotBlank(message = "Password should not empty.")
