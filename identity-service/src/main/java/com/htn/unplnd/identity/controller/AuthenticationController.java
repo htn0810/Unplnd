@@ -1,9 +1,9 @@
 package com.htn.unplnd.identity.controller;
 
 import com.htn.unplnd.commons.ApiResponse;
+import com.htn.unplnd.identity.dto.request.SignInRequest;
 import com.htn.unplnd.identity.dto.request.SignUpRequest;
 import com.htn.unplnd.identity.dto.response.AccountResponse;
-import com.htn.unplnd.identity.entity.Account;
 import com.htn.unplnd.identity.service.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
@@ -26,6 +26,14 @@ public class AuthenticationController {
 		return ApiResponse.<AccountResponse>builder()
 				.message("Account created successfully")
 				.result(account)
+				.build();
+	}
+
+	@PostMapping("/sign-in")
+	ApiResponse<AccountResponse> signin(@RequestBody @Valid SignInRequest signInRequest) {
+		return ApiResponse.<AccountResponse>builder()
+				.message("Signed in successfully")
+				.result(authenticationService.signIn(signInRequest))
 				.build();
 	}
 }

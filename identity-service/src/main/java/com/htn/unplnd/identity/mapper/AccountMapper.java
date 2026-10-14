@@ -8,6 +8,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface AccountMapper {
+	@Mapping(target = "id", ignore = true)
 	@Mapping(target = "passwordHash", ignore = true)
 	Account toAccount(SignUpRequest request);
 

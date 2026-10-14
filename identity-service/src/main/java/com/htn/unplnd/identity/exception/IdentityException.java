@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public enum IdentityException implements ErrorCode {
-	EMAIL_ALREADY_EXISTS(HttpStatus.CONFLICT, "Email already registered");
+	EMAIL_ALREADY_EXISTS(HttpStatus.CONFLICT, "Email already registered"),
+	ACCOUNT_NOT_FOUND(HttpStatus.BAD_REQUEST, "Account not found"),
+	INVALID_CREDENTIALS(HttpStatus.UNAUTHORIZED, "Email or password is incorrect"),;
 
 	HttpStatus status;
 	String message;
